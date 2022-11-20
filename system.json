@@ -10,7 +10,7 @@
   },
   "url": "https://github.com/rtlow/dnd5e-shaper",
   "manifest": "https://raw.githubusercontent.com/rtlow/dnd5e-shaper/master/system.json",
-  "download": "https://github.com/rtlow/dnd5e-shaper/archive/refs/tags/release-0.1.4.zip",
+  "download": "https://github.com/rtlow/dnd5e-shaper/releases/download/release-0.1.4/release-0.1.4.zip",
   "authors": [
     {
       "name": "guiyii",

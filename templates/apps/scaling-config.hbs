@@ -1,0 +1,28 @@
+<form autocomplete="off">
+    <p class="notes">{{localize "SHAPER.ScalingConfigHint"}}</p>
+    <div class="form-group select">
+        <label>{{localize "SHAPER.Scale0"}}</label>
+        <div class="form-fields">
+            <select name="scale0">
+                {{#select scale0}}
+                {{#each config.abilities as |ability id|}}
+                <option value="{{id}}">{{ability}}</option>
+                {{/each}}
+                {{/select}}
+            </select>
+        </div>
+    </div>
+    <div class="form-group select">
+        <label>{{localize "SHAPER.Scale1"}}</label>
+        <div class="form-fields">
+            <select name="scale1">
+                {{#select scale1}}
+                {{#each config.abilities as |ability id|}}
+                <option value="{{id}}">{{ability}}</option>
+                {{/each}}
+                {{/select}}
+            </select>
+        </div>
+    </div>
+    <button type="submit"><i class="far fa-save"></i> {{ localize "Submit"}}</button>
+</form>

@@ -598,6 +598,9 @@
 "SHAPER.RollBoonBaneExample": "e.g. 3",
 
 "SHAPER.ScalingConfig": "Configure Scaling for {stat}",
+"SHAPER.Scale0": "First Ability",
+"SHAPER.Scale1": "Second Ability",
+"SHAPER.ScalingConfigHint": "Choose what Abilities to use for scaling.",
 
 "SHAPER.Movement": "Movement",
 "SHAPER.MovementConfig": "Configure Movement Speed",

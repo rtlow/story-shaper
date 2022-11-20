@@ -32,7 +32,9 @@ jobs:
         JSON=$(cat ./system.json)
         echo ::set-output name=SYSTEM_JSON::${JSON//'%'/'%25'}
 
-
+    - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v3
+      
     # Run some tests to make sure our `system.json` is correct
     # Exit before setting up node if not
     - name: Verify correct naming

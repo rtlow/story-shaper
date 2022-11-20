@@ -2,7 +2,7 @@
   "id": "shaper",
   "title": "Story Shaper System",
   "description": "An implementation of the Story Shaper System in the Foundry Virtual Tabletop environment.",
-  "version": "0.1.4.8",
+  "version": "0.1.4.9",
   "compatibility": {
     "minimum": "10",
     "verified": "10",
@@ -10,71 +10,89 @@
   },
   "url": "https://github.com/rtlow/dnd5e-shaper",
   "manifest": "https://raw.githubusercontent.com/rtlow/dnd5e-shaper/master/system.json",
-  "download": "https://github.com/rtlow/dnd5e-shaper/releases/download/release-0.1.4.8/shaper-release-0.1.4.8.zip",
+  "download": "https://github.com/rtlow/dnd5e-shaper/releases/download/release-0.1.4.9/shaper-release-0.1.4.9.zip",
   "authors": [
     {
       "name": "guiyii",
-      "url": "https://github.com/rtlow/dnd5e-shaper"
+      "url": "https://github.com/rtlow/dnd5e-shaper",
+      "flags": {}
     }
   ],
-  "scripts": [],
-  "esmodules": ["shaper.mjs"],
-  "styles": ["shaper.css"],
+  "esmodules": [
+    "shaper.mjs"
+  ],
+  "styles": [
+    "shaper.css"
+  ],
   "packs": [
     {
       "name": "abilities-tier-0",
       "label": "Abilities (Tier 0)",
       "system": "shaper",
-      "path": "./packs/abilities-tier-0.db",
-      "type": "Item"
+      "path": "packs/abilities-tier-0.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
     },
     {
       "name": "abilities-tier-1",
       "label": "Abilities (Tier 1)",
       "system": "shaper",
-      "path": "./packs/abilities-tier-1.db",
-      "type": "Item"
+      "path": "packs/abilities-tier-1.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
     },
     {
       "name": "abilities-tier-2",
       "label": "Abilities (Tier 2)",
       "system": "shaper",
-      "path": "./packs/abilities-tier-2.db",
-      "type": "Item"
+      "path": "packs/abilities-tier-2.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
     },
     {
       "name": "lessons",
       "label": "Lessons",
       "system": "shaper",
-      "path": "./packs/lessons.db",
-      "type": "Item"
+      "path": "packs/lessons.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
     },
     {
       "name": "talents",
       "label": "Talents",
       "system": "shaper",
-      "path": "./packs/talents.db",
-      "type": "Item"
+      "path": "packs/talents.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
     },
     {
       "name": "utilities",
       "label": "Utilities",
       "system": "shaper",
-      "path": "./packs/utilities.db",
-      "type": "Item"
+      "path": "packs/utilities.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
     }
   ],
   "languages": [
     {
       "lang": "en",
       "name": "English",
-      "path": "lang/en.json"
+      "path": "lang/en.json",
+      "flags": {}
     }
   ],
   "media": [
     {
-      "type":"cover",
-      "link":"https://github.com/foundryvtt/shaper/blob/v10-dev/media/repo-shaper.jpg?raw=true"
+      "type": "cover",
+      "loop": false,
+      "flags": {}
     }
   ],
   "socket": true,

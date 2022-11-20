@@ -31,8 +31,7 @@ jobs:
         echo ::set-output name=RELEASE_INSTALL_URL::https://github.com/${{github.repository}}/releases/download/$TAG/system.json
         JSON=$(cat ./system.json)
         echo ::set-output name=SYSTEM_JSON::${JSON//'%'/'%25'}
-
-
+      
     # Run some tests to make sure our `system.json` is correct
     # Exit before setting up node if not
     - name: Verify correct naming

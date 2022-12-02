@@ -93,6 +93,7 @@ export default class ActorSheet5eNPC extends ActorSheet5e {
     super.activateListeners(html);
     html.find(".health .rollable").click(this._onRollHPFormula.bind(this));
     html.find(".mind .rollable").click(this._onRollMPFormula.bind(this));
+    html.find(".rollable[data-action]").click(this._onSheetAction.bind(this));
   }
 
   /* -------------------------------------------- */
@@ -125,5 +126,22 @@ export default class ActorSheet5eNPC extends ActorSheet5e {
     const mp = new Roll(formula).roll({async: false}).total;
     AudioHelper.play({src: CONFIG.sounds.dice});
     this.actor.update({"system.attributes.mp.value": mp, "system.attributes.mp.max": mp});
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Handle mouse click events for character sheet actions.
+   * @param {MouseEvent} event  The originating click event.
+   * @returns {Promise}         Dialog or roll result.
+   * @private
+   */
+   _onSheetAction(event) {
+    event.preventDefault();
+    const button = event.currentTarget;
+    switch ( button.dataset.action ) {
+      case "rollInitiative":
+        return this.actor.rollInitiative({createCombatants: true});
+    }
   }
 }

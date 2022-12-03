@@ -96,7 +96,7 @@
     }
   ],
   "socket": true,
-  "gridDistance": 1,
+  "gridDistance": 0.25,
   "gridUnits": "sq",
   "primaryTokenAttribute": "attributes.hp",
   "secondaryTokenAttribute": "attributes.mp",

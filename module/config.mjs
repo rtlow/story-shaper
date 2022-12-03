@@ -184,12 +184,12 @@ preLocalize("actorSizes");
  * @enum {number}
  */
 SHAPER.tokenSizes = {
-  tiny: 0.5*.5,
-  sm: 1*.5,
-  med: 1*.5,
-  lg: 2*.5,
-  huge: 3*.5,
-  grg: 4*.5
+  tiny: 0.5,
+  sm: 1,
+  med: 1,
+  lg: 2,
+  huge: 3,
+  grg: 4
 };
 
 /**

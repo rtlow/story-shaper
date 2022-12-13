@@ -49,7 +49,7 @@ export default class ActorSheet5eNPC extends ActorSheet5e {
       item.isStack = Number.isNumeric(quantity) && (quantity !== 1);
       item.hasUses = uses && (uses.max > 0);
       item.isOnCooldown = recharge && !!recharge.value && (recharge.charged === false);
-      item.isDepleted = item.isOnCooldown && (uses.per && (uses.value > 0));
+      
       item.hasTarget = !!target && !(["none", ""].includes(target.type));
       if ( item.type === "spell" ) arr[0].push(item);
       else arr[1].push(item);

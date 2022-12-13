@@ -152,7 +152,7 @@
                 <ul class="ability-scores flexcol">
                 {{#each system.stats as |stat id|}}
                     <li class="ability stats" data-stat="{{id}}">
-                        <h4 class="attribute-name box-title">{{ stat.placeholder }}</h4>
+                        <h4 class="stat-name box-title rollable">{{ stat.placeholder }}</h4>
                         {{numberFormat stat.value name=(concat "system.stats." id ".value")
                             class="ability-score" placeholder="0"}}
                         <a class="config-button" data-action="scaling" title="{{localize 'SHAPER.ScalingConfig'}}"><i class="fas fa-cog"></i></a>

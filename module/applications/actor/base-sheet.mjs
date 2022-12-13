@@ -338,6 +338,9 @@ export default class ActorSheet5e extends ActorSheet {
       // Roll Skill Checks
       html.find(".skill-name").click(this._onRollSkillCheck.bind(this));
 
+      // Stat Checks
+      html.find(".stat-name").click(this._onRollStatTest.bind(this));
+
       // Item Rolling
       html.find(".rollable .item-image").click(event => this._onItemUse(event));
       html.find(".item .item-recharge").click(event => this._onItemRecharge(event));
@@ -678,7 +681,16 @@ export default class ActorSheet5e extends ActorSheet {
     return this.actor.rollSkill(skill, {event: event});
   }
 
-
+  /**
+   * Handle rolling an Ability test or saving throw.
+   * @param {Event} event      The originating click event.
+   * @private
+   */
+  _onRollStatTest(event) {
+    event.preventDefault();
+    let stat = event.currentTarget.parentElement.dataset.stat;
+    this.actor.rollStat(stat, {event: event});
+  }
 
   /* -------------------------------------------- */
 

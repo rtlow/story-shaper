@@ -643,7 +643,6 @@ export default class Item5e extends Item {
     switch ( consume.type ) {
       case "attribute":
         resource = foundry.utils.getProperty(this.actor.system, consume.target);
-        console.log(resource);
         quantity = resource || 0;
         break;
       case "charges":
@@ -1006,7 +1005,6 @@ export default class Item5e extends Item {
    */
   async rollFormula() {
 
-    console.log(this.system);
     if ( !this.system.formula ) throw new Error("This Item does not have a formula to roll!");
 
     const rollConfig = {

@@ -450,14 +450,13 @@ export default class Item5e extends Item {
 
     // Reference aspects of the item data necessary for usage
     const resource = is.consume || {};        // Resource consumption
-    const isSpell = item.type === "spell";    // Does the item require a spell slot?
 
     // Define follow-up actions resulting from the item usage
     config = foundry.utils.mergeObject({
       createMeasuredTemplate: item.hasAreaTarget,
       consumeQuantity: is.uses?.autoDestroy ?? false,
       consumeRecharge: !!is.recharge?.value,
-      consumeResource: !!resource.target && !item.hasAttack,
+      consumeResource: !!resource.target,
       consumeUpkeep: !!is.upkeep?.value,
       consumeUsage: !!is.uses?.per
     }, config);

@@ -31,15 +31,6 @@ export default class Actor5e extends Actor {
       if ( !this.id ) this.updateSource(updates);
       else this.update(updates);
     }
-
-    switch ( this.type ) {
-      case "character":
-        return this._prepareCharacterData();
-      case "npc":
-        return this._prepareNPCData();
-      case "vehicle":
-        return this._prepareVehicleData();
-    }
   }
 
   /* --------------------------------------------- */
@@ -66,10 +57,18 @@ export default class Actor5e extends Actor {
     this._prepareAbilities(bonusData, globalBonuses, checkBonus);
     this._prepareSkills(bonusData, globalBonuses, checkBonus);
     this._prepareInitiative(bonusData, checkBonus);
-    this._prepareCounts();
-    this._prepareStats();
-    this._prepareHP();
-    this._prepareMP();
+
+    switch ( this.type ) {
+      case "character":
+        this._prepareCounts();
+        this._prepareStats();
+        this._prepareHP();
+        this._prepareMP();
+      case "npc":
+        return this._prepareNPCData();
+      case "vehicle":
+        return this._prepareVehicleData();
+    }
   }
 
   /* -------------------------------------------- */
@@ -170,7 +169,7 @@ export default class Actor5e extends Actor {
    * @protected
    */
   _prepareNPCData() {
-    const cr = this.system.details.cr;
+    //const cr = this.system.details.cr;
     // Do I even need this here?
   }
 
@@ -632,6 +631,78 @@ export default class Actor5e extends Actor {
      * @param {string} abilityId  ID of the ability that was rolled as defined in `SHAPER.abilities`.
      */
     if ( roll ) Hooks.callAll("shaper.rollAbilityTest", this, roll, abilityId);
+
+    return roll;
+  }
+
+   /* -------------------------------------------- */
+
+  /**
+   * Roll a Stat Check
+   * Prompt the user for input regarding Advantage/Disadvantage and any Situational Bonus
+   * @param {string} statID      The skill id (e.g. "ins")
+   * @param {object} options      Options which configure how the skill check is rolled
+   * @returns {Promise<D10Roll>}  A Promise which resolves to the created Roll instance
+   */
+  async rollStat(statID, options={}) {
+    const stat = this.system.stats[statID];
+    const globalBonuses = this.system.bonuses?.abilities ?? {};
+    const parts = ["@mod", "@abilityCheckBonus"];
+    const data = this.getRollData();
+
+    data.mod = stat.value ?? 0;
+
+    // Global ability check bonus
+    if ( globalBonuses.check ) {
+      parts.push("@checkBonus");
+      data.checkBonus = Roll.replaceFormulaData(globalBonuses.check, data);
+    }
+
+    // Global skill check bonus
+    if ( globalBonuses.skill ) {
+      parts.push("@skillBonus");
+      data.skillBonus = Roll.replaceFormulaData(globalBonuses.skill, data);
+    }
+
+    // Add provided extra roll parts now because they will get clobbered by mergeObject below
+    if ( options.parts?.length > 0 ) parts.push(...options.parts);
+
+
+    // Roll and return
+    const flavor = game.i18n.format("SHAPER.SkillPromptTitle", {skill: CONFIG.SHAPER.stats[statID]?.label ?? ""});
+    const rollData = foundry.utils.mergeObject({
+      parts,
+      data,
+      title: `${flavor}: ${this.name}`,
+      flavor,
+      messageData: {
+        speaker: options.speaker || ChatMessage.getSpeaker({actor: this}),
+        "flags.shaper.roll": {type: "ability", statID }
+      }
+    }, options);
+
+    /**
+     * A hook event that fires before a skill check is rolled for an Actor.
+     * @function shaper.preRollSkill
+     * @memberof hookEvents
+     * @param {Actor5e} actor                Actor for which the skill check is being rolled.
+     * @param {D10RollConfiguration} config  Configuration data for the pending roll.
+     * @param {string} skillId               ID of the skill being rolled as defined in `SHAPER.skills`.
+     * @returns {boolean}                    Explicitly return `false` to prevent skill check from being rolled.
+     */
+    if ( Hooks.call("shaper.preRollAbilityTest", this, rollData, statID) === false ) return;
+
+    const roll = await d10Roll(rollData);
+
+    /**
+     * A hook event that fires after a skill check has been rolled for an Actor.
+     * @function shaper.rollSkill
+     * @memberof hookEvents
+     * @param {Actor5e} actor   Actor for which the skill check has been rolled.
+     * @param {D10Roll} roll    The resulting roll.
+     * @param {string} skillId  ID of the skill that was rolled as defined in `SHAPER.skills`.
+     */
+    if ( roll ) Hooks.callAll("shaper.rollAbilityTest", this, roll, statID);
 
     return roll;
   }

@@ -101,7 +101,7 @@ patchConfig("skills", "label", { since: 2.0, until: 2.2 });
   menO: { label: "SHAPER.StatMeno", scale0: "mnd", scale1: "sol" },
   physD: { label: "SHAPER.StatPhysd", scale0: "tgh", scale1: "fin" },
   menD: { label: "SHAPER.StatMend", scale0: "hrt", scale1: "sol" },
-  endurance: { label: "SHAPER.StatEndur", scale0: "tgh", scale1: "hrt" }
+  endurance: { label: "SHAPER.StatEndurance", scale0: "tgh", scale1: "hrt" }
 };
 preLocalize("stats", { key: "label" });
 

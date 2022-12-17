@@ -100,7 +100,8 @@ patchConfig("skills", "label", { since: 2.0, until: 2.2 });
   physO: { label: "SHAPER.StatPhyso", scale0: "str", scale1: "fin"},
   menO: { label: "SHAPER.StatMeno", scale0: "mnd", scale1: "sol" },
   physD: { label: "SHAPER.StatPhysd", scale0: "tgh", scale1: "fin" },
-  menD: { label: "SHAPER.StatMend", scale0: "hrt", scale1: "sol" }
+  menD: { label: "SHAPER.StatMend", scale0: "hrt", scale1: "sol" },
+  endurance: { label: "SHAPER.StatEndur", scale0: "tgh", scale1: "hrt" }
 };
 preLocalize("stats", { key: "label" });
 
@@ -113,7 +114,8 @@ preLocalize("stats", { key: "label" });
   obuff: "SHAPER.OBuff",
   dbuff: "SHAPER.DBuff",
   vitality: "SHAPER.Vitality",
-  capacity: "SHAPER.Capacity"
+  capacity: "SHAPER.Capacity",
+  position: "SHAPER.Position"
 };
 preLocalize("counts");
 

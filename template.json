@@ -107,6 +107,12 @@
             "bonus": 0,
             "scale0": "hrt",
             "scale1": "sol"
+          },
+          "endurance": {
+            "value": 0,
+            "bonus": 0,
+            "scale0": "tgh",
+            "scale1": "hrt"
           }
         },
         "counts": {
@@ -131,6 +137,11 @@
             "min": 0
           },
           "capacity": {
+            "value": 0,
+            "max": 10000,
+            "min": 0
+          },
+          "position": {
             "value": 0,
             "max": 10000,
             "min": 0

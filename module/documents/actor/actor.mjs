@@ -156,7 +156,9 @@ export default class Actor5e extends Actor {
    * @protected
    */
   _prepareCharacterData() {
-    //this.system.details.level = this.system.details?.level ?? 0;
+    
+    // initialize hero tier
+    this.system.details.tier = this.system.details?.tier ?? 0;
     // Experience required for next level
     //const xp = this.system.details.xp;
   }
@@ -303,6 +305,7 @@ export default class Actor5e extends Actor {
    */
   _prepareStats() {
 
+
     for ( const [id, st] of Object.entries(this.system.stats) ) {
       const scale0 = this.system.abilities[st.scale0];
       const scale1 = this.system.abilities[st.scale1];
@@ -314,6 +317,9 @@ export default class Actor5e extends Actor {
         case "physD":
         case "menD":
           st.value = scale0.value + scale1.value + st.bonus + 10;
+          break;
+        case "endurance":
+          st.value = scale0.value + scale1.value + st.bonus + ( this.system.details?.tier ?? 0 );
           break;
       }
     }

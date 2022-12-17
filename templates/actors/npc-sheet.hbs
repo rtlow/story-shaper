@@ -174,6 +174,13 @@
                                 placeholder="0"}}
                         </div>
                     </div>
+                    <div class="counter flexrow ">
+                        <h4>{{ localize "SHAPER.Position" }}</h4>
+                        <div class="counter-value">
+                            {{numberInput system.counts.position.value name="system.counts.position.value"
+                                placeholder="0"}}
+                        </div>
+                    </div>
                 </div>
                 {{!-- Traits --}}
                 {{> "shaper.actor-traits"}}

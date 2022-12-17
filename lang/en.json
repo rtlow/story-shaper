@@ -302,6 +302,7 @@
 "SHAPER.DBuff": "Defensive Buff",
 "SHAPER.Vitality": "Vitality",
 "SHAPER.Capacity": "Capacity",
+"SHAPER.Position": "Position",
 
 "SHAPER.Expertise": "Expertise",
 "SHAPER.FeatureCooldown": "Cooldown",
@@ -587,6 +588,7 @@
 "SHAPER.StatMeno": "Mental Offense",
 "SHAPER.StatPhysd": "Physical Defense",
 "SHAPER.StatMend": "Mental Defense",
+"SHAPER.StatEndur": "Endurance",
 
 "SHAPER.Ritual": "Ritual",
 "SHAPER.RitualAbbr": "R",

@@ -21,7 +21,7 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
     const context = await super.getData(options);
 
     // Resources
-    context.stats = ["physO", "menO", "physD", "menD"].reduce((arr, r) => {
+    context.stats = ["physO", "menO", "physD", "menD", "endurance"].reduce((arr, r) => {
       const stat = context.actor.system.stats[r] || {};
       stat.name = r;
       stat.placeholder = game.i18n.localize(`SHAPER.Stat${r.titleCase()}`);

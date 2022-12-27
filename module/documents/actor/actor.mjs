@@ -263,6 +263,8 @@ export default class Actor5e extends Actor {
    */
   _prepareHP() {
     const hp = this.system.attributes.hp ?? {};
+    
+    hp.bonus = hp.bonus ?? 0;
 
     const scale0 = this.system.abilities[hp.scale0];
     const scale1 = this.system.abilities[hp.scale1];
@@ -273,7 +275,7 @@ export default class Actor5e extends Actor {
 
     const vim = vit.value * ( 5 + scale0.value + scale1.value );
 
-    hp.max = base + vim;
+    hp.max = base + vim + hp.bonus;
 
   }
 
@@ -283,6 +285,8 @@ export default class Actor5e extends Actor {
    */
      _prepareMP() {
       const mp = this.system.attributes.mp ?? {};
+
+      mp.bonus = mp.bonus ?? 0;
   
       const scale0 = this.system.abilities[mp.scale0];
       const scale1 = this.system.abilities[mp.scale1];
@@ -293,7 +297,7 @@ export default class Actor5e extends Actor {
   
       const vig = cap.value * ( 5 + scale0.value + scale1.value );
       
-      mp.max = base + vig;
+      mp.max = base + vig + mp.bonus;
   
     }
 

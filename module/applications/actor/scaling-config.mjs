@@ -53,7 +53,9 @@ export default class ActorScalingConfig extends DocumentSheet {
           statId: this._statId,
           config: CONFIG.SHAPER,
           scale0: src.system.attributes[this._statId].scale0,
-          scale1: src.system.attributes[this._statId].scale1
+          scale1: src.system.attributes[this._statId].scale1,
+          bonus: src.system.attributes[this._statId].bonus,
+          hasBonus: true
         };
       default:
         return {
@@ -61,7 +63,8 @@ export default class ActorScalingConfig extends DocumentSheet {
           statId: this._statId,
           config: CONFIG.SHAPER,
           scale0: src.system.stats[this._statId].scale0,
-          scale1: src.system.stats[this._statId].scale1
+          scale1: src.system.stats[this._statId].scale1,
+          hasBonus: false
         };
     }
   }
@@ -81,6 +84,7 @@ export default class ActorScalingConfig extends DocumentSheet {
       case 'mp':
         updateData[`system.attributes.${this._statId}.scale0`] = updates.scale0;
         updateData[`system.attributes.${this._statId}.scale1`] = updates.scale1;
+        updateData[`system.attributes.${this._statId}.bonus`] = updates.bonus;
         break;
       default:
         updateData[`system.stats.${this._statId}.scale0`] = updates.scale0;

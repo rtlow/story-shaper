@@ -28,6 +28,7 @@
             "value": 10,
             "min": 0,
             "max": 10,
+            "bonus": 0,
             "scale0": "str",
             "scale1": "tgh"
           },
@@ -35,6 +36,7 @@
             "value": 10,
             "min": 0,
             "max": 10,
+            "bonus": 0,
             "scale0": "mnd",
             "scale1": "hrt"
           },
@@ -181,7 +183,7 @@
           "con": {
             "value": 0,
             "ability0": "tgh",
-            "ability1": "mnd",
+            "ability1": "str",
             "points": 0
           },
           "cft": {
@@ -218,6 +220,12 @@
             "value": 0,
             "ability0": "tgh",
             "ability1": "hrt",
+            "points": 0
+          },
+          "hst": {
+            "value": 0,
+            "ability0": "mnd",
+            "ability1": "sol",
             "points": 0
           },
           "int": {
@@ -276,7 +284,7 @@
           },
           "sur": {
             "value": 0,
-            "ability0": "mnd",
+            "ability0": "tgh",
             "ability1": "sol",
             "points": 0
           },

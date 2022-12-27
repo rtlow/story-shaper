@@ -24,5 +24,11 @@
             </select>
         </div>
     </div>
+    {{#if hasBonus}}
+    <div class="form-group">
+        <label>{{localize "SHAPER.Bonus"}}</label>
+        <input name="bonus" type="number" step="1" value="{{bonus}}"/>
+    </div>
+    {{/if}}
     <button type="submit"><i class="far fa-save"></i> {{ localize "Submit"}}</button>
 </form>

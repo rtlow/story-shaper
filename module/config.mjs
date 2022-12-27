@@ -69,13 +69,14 @@ SHAPER.skills = {
   ani: { label: "SHAPER.SkillAni", ability0: "hrt", ability1: "sol" },
   awa: { label: "SHAPER.SkillAwa", ability0: "mnd", ability1: "sol" },
   cmp: { label: "SHAPER.SkillCmp", ability0: "tgh", ability1: "sol" },
-  con: { label: "SHAPER.SkillCon", ability0: "tgh", ability1: "mnd" },
+  con: { label: "SHAPER.SkillCon", ability0: "tgh", ability1: "str" },
   cft: { label: "SHAPER.SkillCft", ability0: "fin", ability1: "mnd" },
   dec: { label: "SHAPER.SkillDec", ability0: "mnd", ability1: "hrt" },
   dip: { label: "SHAPER.SkillDip", ability0: "hrt", ability1: "sol" },
   drv: { label: "SHAPER.SkillDrv", ability0: "fin", ability1: "mnd" },
   emp: { label: "SHAPER.SkillEmp", ability0: "hrt", ability1: "sol" },
   end: { label: "SHAPER.SkillEnd", ability0: "tgh", ability1: "hrt" },
+  hst: { label: "SHAPER.SkillHst", ability0: "mnd", ability1: "sol" },
   int: { label: "SHAPER.SkillInt", ability0: "str", ability1: "hrt" },
   inv: { label: "SHAPER.SkillInv", ability0: "mnd", ability1: "sol" },
   lor: { label: "SHAPER.SkillLor", ability0: "mnd", ability1: "sol" },
@@ -85,7 +86,7 @@ SHAPER.skills = {
   sci: { label: "SHAPER.SkillSci", ability0: "mnd", ability1: "sol" },
   stl: { label: "SHAPER.SkillStl", ability0: "fin", ability1: "mnd" },
   stw: { label: "SHAPER.SkillStw", ability0: "mnd", ability1: "hrt" },
-  sur: { label: "SHAPER.SkillSur", ability0: "mnd", ability1: "sol" },
+  sur: { label: "SHAPER.SkillSur", ability0: "tgh", ability1: "sol" },
   tch: { label: "SHAPER.SkillTch", ability0: "fin", ability1: "mnd" }
 };
 preLocalize("skills", { key: "label", sort: true });

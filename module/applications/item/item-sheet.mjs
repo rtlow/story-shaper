@@ -1,10 +1,10 @@
 import TraitSelector from "../trait-selector.mjs";
-import ActiveEffect5e from "../../documents/active-effect.mjs";
+import ActiveEffectShaper from "../../documents/active-effect.mjs";
 
 /**
  * Override and extend the core ItemSheet implementation to handle specific item types.
  */
-export default class ItemSheet5e extends ItemSheet {
+export default class ItemSheetShaper extends ItemSheet {
   constructor(...args) {
     super(...args);
   }
@@ -68,7 +68,7 @@ export default class ItemSheet5e extends ItemSheet {
       isLine: ["line", "wall"].includes(item.system.target?.type),
 
       // Prepare Active Effects
-      effects: ActiveEffect5e.prepareActiveEffectCategories(item.effects)
+      effects: ActiveEffectShaper.prepareActiveEffectCategories(item.effects)
     });
 
     // Set up config with proper spell components
@@ -195,7 +195,7 @@ export default class ItemSheet5e extends ItemSheet {
       html.find(".trait-selector").click(this._onConfigureTraits.bind(this));
       html.find(".effect-control").click(ev => {
         if ( this.item.isOwned ) return ui.notifications.warn("Managing Active Effects within an Owned Item is not currently supported and will be added in a subsequent update.");
-        ActiveEffect5e.onManageActiveEffect(ev, this.item);
+        ActiveEffectShaper.onManageActiveEffect(ev, this.item);
       });
     }
   }
@@ -206,7 +206,7 @@ export default class ItemSheet5e extends ItemSheet {
   /**
    * Add or remove a damage part from the damage formula.
    * @param {Event} event             The original click event.
-   * @returns {Promise<Item5e>|null}  Item with updates applied.
+   * @returns {Promise<ItemShaper>|null}  Item with updates applied.
    * @private
    */
   async _onDamageControl(event) {
@@ -259,11 +259,11 @@ export default class ItemSheet5e extends ItemSheet {
     const item = this.item;
     
     /**
-     * A hook event that fires when some useful data is dropped onto an ItemSheet5e.
+     * A hook event that fires when some useful data is dropped onto an ItemSheetShaper.
      * @function shaper.dropItemSheetData
      * @memberof hookEvents
-     * @param {Item5e} item                  The Item5e
-     * @param {ItemSheet5e} sheet            The ItemSheet5e application
+     * @param {ItemShaper} item                  The ItemShaper
+     * @param {ItemSheetShaper} sheet            The ItemSheetShaper application
      * @param {object} data                  The data that has been dropped onto the sheet
      * @returns {boolean}                    Explicitly return `false` to prevent normal drop handling.
      */

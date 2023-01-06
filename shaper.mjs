@@ -43,15 +43,15 @@ Hooks.once("init", function() {
 
   // Record Configuration Values
   CONFIG.SHAPER = SHAPER;
-  CONFIG.ActiveEffect.documentClass = documents.ActiveEffect5e;
-  CONFIG.Actor.documentClass = documents.Actor5e;
-  CONFIG.Item.documentClass = documents.Item5e;
-  CONFIG.Token.documentClass = documents.TokenDocument5e;
-  CONFIG.Token.objectClass = canvas.Token5e;
+  CONFIG.ActiveEffect.documentClass = documents.ActiveEffectShaper;
+  CONFIG.Actor.documentClass = documents.ActorShaper;
+  CONFIG.Item.documentClass = documents.ItemShaper;
+  CONFIG.Token.documentClass = documents.TokenDocumentShaper;
+  CONFIG.Token.objectClass = canvas.TokenShaper;
   CONFIG.time.roundTime = 6;
   CONFIG.Dice.DamageRoll = dice.DamageRoll;
   CONFIG.Dice.D10Roll = dice.D10Roll;
-  CONFIG.MeasuredTemplate.defaults.angle = 53.13; // 5e cone RAW should be 53.13 degrees
+  CONFIG.MeasuredTemplate.defaults.angle = 53.13; // Shaper cone RAW should be 53.13 degrees
 
   // Register System Settings
   registerSystemSettings();
@@ -66,23 +66,23 @@ Hooks.once("init", function() {
 
   // Register sheet application classes
   Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet("shaper", applications.actor.ActorSheet5eCharacter, {
+  Actors.registerSheet("shaper", applications.actor.ActorSheetShaperCharacter, {
     types: ["character"],
     makeDefault: true,
     label: "SHAPER.SheetClassCharacter"
   });
-  Actors.registerSheet("shaper", applications.actor.ActorSheet5eNPC, {
+  Actors.registerSheet("shaper", applications.actor.ActorSheetShaperNPC, {
     types: ["npc"],
     makeDefault: true,
     label: "SHAPER.SheetClassNPC"
   });
-  Actors.registerSheet("shaper", applications.actor.ActorSheet5eVehicle, {
+  Actors.registerSheet("shaper", applications.actor.ActorSheetShaperVehicle, {
     types: ["vehicle"],
     makeDefault: true,
     label: "SHAPER.SheetClassVehicle"
   });
   Items.unregisterSheet("core", ItemSheet);
-  Items.registerSheet("shaper", applications.item.ItemSheet5e, {
+  Items.registerSheet("shaper", applications.item.ItemSheetShaper, {
     makeDefault: true,
     label: "SHAPER.SheetClassItem"
   });
@@ -147,8 +147,8 @@ Hooks.on("canvasInit", gameCanvas => {
 Hooks.on("renderChatMessage", documents.chat.onRenderChatMessage);
 Hooks.on("getChatLogEntryContext", documents.chat.addChatMessageContextOptions);
 
-Hooks.on("renderChatLog", (app, html, data) => documents.Item5e.chatListeners(html));
-Hooks.on("renderChatPopout", (app, html, data) => documents.Item5e.chatListeners(html));
+Hooks.on("renderChatLog", (app, html, data) => documents.ItemShaper.chatListeners(html));
+Hooks.on("renderChatPopout", (app, html, data) => documents.ItemShaper.chatListeners(html));
 
 /* -------------------------------------------- */
 /*  Bundled Module Exports                      */

@@ -1,5 +1,5 @@
-import ActiveEffect5e from "../../documents/active-effect.mjs";
-import Item5e from "../../documents/item.mjs";
+import ActiveEffectShaper from "../../documents/active-effect.mjs";
+import ItemShaper from "../../documents/item.mjs";
 
 import ActorAbilityConfig from "./ability-config.mjs";
 import ActorMovementConfig from "./movement-config.mjs";
@@ -16,7 +16,7 @@ import TraitSelector from "../trait-selector.mjs";
  * Extend the basic ActorSheet class to suppose system-specific logic and functionality.
  * @abstract
  */
-export default class ActorSheet5e extends ActorSheet {
+export default class ActorSheetShaper extends ActorSheet {
 
   /**
    * Track the set of item filters which are applied
@@ -83,7 +83,7 @@ export default class ActorSheet5e extends ActorSheet {
       items: actorData.items,
       labels: this._getLabels(actorData.system),
       movement: this._getMovementSpeed(actorData.system),
-      effects: ActiveEffect5e.prepareActiveEffectCategories(this.actor.effects),
+      effects: ActiveEffectShaper.prepareActiveEffectCategories(this.actor.effects),
       warnings: foundry.utils.deepClone(this.actor._preparationWarnings),
       filters: this._filters,
       owner: this.actor.isOwner,
@@ -326,7 +326,7 @@ export default class ActorSheet5e extends ActorSheet {
       html.find(".item-uses input").click(ev => ev.target.select()).change(this._onUsesChange.bind(this));
 
       // Active Effect management
-      html.find(".effect-control").click(ev => ActiveEffect5e.onManageActiveEffect(ev, this.actor));
+      html.find(".effect-control").click(ev => ActiveEffectShaper.onManageActiveEffect(ev, this.actor));
     }
 
     // Owner Only Listeners
@@ -493,7 +493,7 @@ export default class ActorSheet5e extends ActorSheet {
   /**
    * Stack identical consumables when a new one is dropped rather than creating a duplicate item.
    * @param {object} itemData         The item data requested for creation.
-   * @returns {Promise<Item5e>|null}  If a duplicate was found, returns the adjusted item stack.
+   * @returns {Promise<ItemShaper>|null}  If a duplicate was found, returns the adjusted item stack.
    */
   _onDropStackConsumables(itemData) {
     const droppedSourceId = itemData.flags.core?.sourceId;
@@ -513,7 +513,7 @@ export default class ActorSheet5e extends ActorSheet {
   /**
    * Change the uses amount of an Owned Item within the Actor.
    * @param {Event} event        The triggering click event.
-   * @returns {Promise<Item5e>}  Updated item.
+   * @returns {Promise<ItemShaper>}  Updated item.
    * @private
    */
   async _onUsesChange(event) {
@@ -587,7 +587,7 @@ export default class ActorSheet5e extends ActorSheet {
   /**
    * Handle creating a new Owned Item for the actor using initial data defined in the HTML dataset.
    * @param {Event} event          The originating click event.
-   * @returns {Promise<Item5e[]>}  The newly created item.
+   * @returns {Promise<ItemShaper[]>}  The newly created item.
    * @private
    */
   _onItemCreate(event) {
@@ -610,7 +610,7 @@ export default class ActorSheet5e extends ActorSheet {
   /**
    * Handle editing an existing Owned Item for the Actor.
    * @param {Event} event    The originating click event.
-   * @returns {ItemSheet5e}  The rendered item sheet.
+   * @returns {ItemSheetShaper}  The rendered item sheet.
    * @private
    */
   _onItemEdit(event) {
@@ -625,7 +625,7 @@ export default class ActorSheet5e extends ActorSheet {
   /**
    * Handle deleting an existing Owned Item for the Actor.
    * @param {Event} event  The originating click event.
-   * @returns {Promise<Item5e>|undefined}  The deleted item if something was deleted or the
+   * @returns {Promise<ItemShaper>|undefined}  The deleted item if something was deleted or the
    * @private
    */
   async _onItemDelete(event) {
@@ -697,7 +697,7 @@ export default class ActorSheet5e extends ActorSheet {
   /**
    * Handle toggling of filters to display a different set of owned items.
    * @param {Event} event     The click event which triggered the toggle.
-   * @returns {ActorSheet5e}  This actor sheet with toggled filters.
+   * @returns {ActorSheetShaper}  This actor sheet with toggled filters.
    * @private
    */
   _onToggleFilter(event) {

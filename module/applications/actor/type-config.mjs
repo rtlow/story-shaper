@@ -1,4 +1,4 @@
-import Actor5e from "../../documents/actor/actor.mjs";
+import ActorShaper from "../../documents/actor/actor.mjs";
 
 /**
  * A specialized form used to select from a checklist of attributes, traits, or properties
@@ -70,7 +70,7 @@ export default class ActorTypeConfig extends FormApplication {
         obj[e[0]] = e[1];
         return obj;
       }, {}),
-      preview: Actor5e.formatCreatureType(attr) || "–"
+      preview: ActorShaper.formatCreatureType(attr) || "–"
     };
   }
 
@@ -98,7 +98,7 @@ export default class ActorTypeConfig extends FormApplication {
   _onChangeInput(event) {
     super._onChangeInput(event);
     const typeObject = foundry.utils.expandObject(this._getSubmitData());
-    this.form.preview.value = Actor5e.formatCreatureType(typeObject) || "—";
+    this.form.preview.value = ActorShaper.formatCreatureType(typeObject) || "—";
   }
 
   /* -------------------------------------------- */

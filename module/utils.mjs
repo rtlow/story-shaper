@@ -120,7 +120,7 @@ export async function preloadHandlebarsTemplates() {
 /* -------------------------------------------- */
 
 /**
- * Register custom Handlebars helpers used by 5e.
+ * Register custom Handlebars helpers used by Shaper.
  */
 export function registerHandlebarsHelpers() {
   Handlebars.registerHelper({

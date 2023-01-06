@@ -4,7 +4,7 @@ import { simplifyBonus } from "../../utils.mjs";
 /**
  * Extend the base Actor class to implement additional system-specific logic.
  */
-export default class Actor5e extends Actor {
+export default class ActorShaper extends Actor {
 
   /* -------------------------------------------- */
   /*  Methods                                     */
@@ -413,7 +413,7 @@ export default class Actor5e extends Actor {
    * Apply a certain amount of damage or healing to the health pool for Actor
    * @param {number} amount       An amount of damage (positive) or healing (negative) to sustain
    * @param {number} multiplier   A multiplier which allows for resistance, vulnerability, or healing
-   * @returns {Promise<Actor5e>}  A Promise which resolves once the damage has been applied
+   * @returns {Promise<ActorShaper>}  A Promise which resolves once the damage has been applied
    */
   async applyDamage(amount=0, multiplier=1) {
     amount = Math.floor(parseInt(amount) * multiplier);
@@ -531,7 +531,7 @@ export default class Actor5e extends Actor {
      * A hook event that fires before a skill check is rolled for an Actor.
      * @function shaper.preRollSkill
      * @memberof hookEvents
-     * @param {Actor5e} actor                Actor for which the skill check is being rolled.
+     * @param {ActorShaper} actor                Actor for which the skill check is being rolled.
      * @param {D10RollConfiguration} config  Configuration data for the pending roll.
      * @param {string} skillId               ID of the skill being rolled as defined in `SHAPER.skills`.
      * @returns {boolean}                    Explicitly return `false` to prevent skill check from being rolled.
@@ -544,7 +544,7 @@ export default class Actor5e extends Actor {
      * A hook event that fires after a skill check has been rolled for an Actor.
      * @function shaper.rollSkill
      * @memberof hookEvents
-     * @param {Actor5e} actor   Actor for which the skill check has been rolled.
+     * @param {ActorShaper} actor   Actor for which the skill check has been rolled.
      * @param {D10Roll} roll    The resulting roll.
      * @param {string} skillId  ID of the skill that was rolled as defined in `SHAPER.skills`.
      */
@@ -623,7 +623,7 @@ export default class Actor5e extends Actor {
      * A hook event that fires before an ability test is rolled for an Actor.
      * @function shaper.preRollAbilityTest
      * @memberof hookEvents
-     * @param {Actor5e} actor                Actor for which the ability test is being rolled.
+     * @param {ActorShaper} actor                Actor for which the ability test is being rolled.
      * @param {D10RollConfiguration} config  Configuration data for the pending roll.
      * @param {string} abilityId             ID of the ability being rolled as defined in `SHAPER.abilities`.
      * @returns {boolean}                    Explicitly return `false` to prevent ability test from being rolled.
@@ -636,7 +636,7 @@ export default class Actor5e extends Actor {
      * A hook event that fires after an ability test has been rolled for an Actor.
      * @function shaper.rollAbilityTest
      * @memberof hookEvents
-     * @param {Actor5e} actor     Actor for which the ability test has been rolled.
+     * @param {ActorShaper} actor     Actor for which the ability test has been rolled.
      * @param {D10Roll} roll      The resulting roll.
      * @param {string} abilityId  ID of the ability that was rolled as defined in `SHAPER.abilities`.
      */
@@ -695,7 +695,7 @@ export default class Actor5e extends Actor {
      * A hook event that fires before a skill check is rolled for an Actor.
      * @function shaper.preRollSkill
      * @memberof hookEvents
-     * @param {Actor5e} actor                Actor for which the skill check is being rolled.
+     * @param {ActorShaper} actor                Actor for which the skill check is being rolled.
      * @param {D10RollConfiguration} config  Configuration data for the pending roll.
      * @param {string} skillId               ID of the skill being rolled as defined in `SHAPER.skills`.
      * @returns {boolean}                    Explicitly return `false` to prevent skill check from being rolled.
@@ -708,7 +708,7 @@ export default class Actor5e extends Actor {
      * A hook event that fires after a skill check has been rolled for an Actor.
      * @function shaper.rollSkill
      * @memberof hookEvents
-     * @param {Actor5e} actor   Actor for which the skill check has been rolled.
+     * @param {ActorShaper} actor   Actor for which the skill check has been rolled.
      * @param {D10Roll} roll    The resulting roll.
      * @param {string} skillId  ID of the skill that was rolled as defined in `SHAPER.skills`.
      */

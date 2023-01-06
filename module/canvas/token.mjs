@@ -1,7 +1,7 @@
 /**
  * Extend the base Token class to implement additional system-specific logic.
  */
-export default class Token5e extends Token {
+export default class TokenShaper extends Token {
 
   /** @inheritdoc */
   _drawBar(number, bar, data) {

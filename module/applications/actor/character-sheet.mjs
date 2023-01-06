@@ -1,9 +1,9 @@
-import ActorSheet5e from "./base-sheet.mjs";
+import ActorSheetShaper from "./base-sheet.mjs";
 
 /**
  * An Actor sheet for player character type actors.
  */
-export default class ActorSheet5eCharacter extends ActorSheet5e {
+export default class ActorSheetShaperCharacter extends ActorSheetShaper {
 
   /** @inheritDoc */
   static get defaultOptions() {
@@ -101,7 +101,7 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
 
   /**
    * A helper method to establish the displayed preparation state for an item.
-   * @param {Item5e} item  Item being prepared for display. *Will be mutated.*
+   * @param {ItemShaper} item  Item being prepared for display. *Will be mutated.*
    * @private
    */
   _prepareItemToggleState(item) {

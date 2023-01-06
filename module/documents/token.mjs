@@ -1,7 +1,7 @@
 /**
  * Extend the base TokenDocument class to implement system-specific HP bar logic.
  */
-export default class TokenDocument5e extends TokenDocument {
+export default class TokenDocumentShaper extends TokenDocument {
 
   /** @inheritdoc */
   getBarAttribute(...args) {

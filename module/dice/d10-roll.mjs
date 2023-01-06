@@ -1,5 +1,5 @@
 /**
- * A type of Roll specific to a d10-based check, save, or attack roll in the 5e system.
+ * A type of Roll specific to a d10-based check, save, or attack roll in the Shaper system.
  * @param {string} formula                       The string formula to parse
  * @param {object} data                          The data object against which to parse attributes within the formula
  * @param {object} [options={}]                  Extra optional arguments which describe or modify the D10Roll
@@ -32,7 +32,7 @@ export default class D10Roll extends Roll {
   /* -------------------------------------------- */
 
   /**
-   * Advantage mode of a 5e d10 roll
+   * Advantage mode of a Shaper d10 roll
    * @enum {number}
    */
   static ADV_MODE = {

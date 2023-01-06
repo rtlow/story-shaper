@@ -37,7 +37,7 @@
  */
 
 /**
- * A standardized helper function for managing core 5e d10 rolls.
+ * A standardized helper function for managing core Shaper d10 rolls.
  * Holding SHIFT, ALT, or CTRL when the attack is rolled will "fast-forward".
  * This chooses the default options of a normal attack with no bonus, Advantage, or Disadvantage respectively
  *
@@ -152,7 +152,7 @@ function _determineAdvantageMode({event, advantage=false, disadvantage=false, fa
  */
 
 /**
- * A standardized helper function for managing core 5e damage rolls.
+ * A standardized helper function for managing core Shaper damage rolls.
  * Holding SHIFT, ALT, or CTRL when the attack is rolled will "fast-forward".
  * This chooses the default options of a normal attack with no bonus, Critical, or no bonus respectively
  *

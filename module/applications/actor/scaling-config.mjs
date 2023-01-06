@@ -1,5 +1,5 @@
 /**
- * @param {Actor5e} actor               The Actor instance being displayed within the sheet.
+ * @param {ActorShaper} actor               The Actor instance being displayed within the sheet.
  * @param {ApplicationOptions} options  Additional application configuration options.
  * @param {string} statId           The stat key as defined in CONFIG.SHAPER.stats.
  */

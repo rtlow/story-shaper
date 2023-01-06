@@ -1,5 +1,5 @@
 /**
- * A helper class for building MeasuredTemplates for 5e spells and abilities
+ * A helper class for building MeasuredTemplates for Shaper spells and abilities
  */
 export default class AbilityTemplate extends MeasuredTemplate {
 
@@ -28,8 +28,8 @@ export default class AbilityTemplate extends MeasuredTemplate {
   /* -------------------------------------------- */
 
   /**
-   * A factory method to create an AbilityTemplate instance using provided data from an Item5e instance
-   * @param {Item5e} item               The Item object for which to construct the template
+   * A factory method to create an AbilityTemplate instance using provided data from an ItemShaper instance
+   * @param {ItemShaper} item               The Item object for which to construct the template
    * @returns {AbilityTemplate|null}    The template object, or null if the item does not produce a template
    */
   static fromItem(item) {
@@ -54,12 +54,12 @@ export default class AbilityTemplate extends MeasuredTemplate {
       case "cone":
         templateData.angle = CONFIG.MeasuredTemplate.defaults.angle;
         break;
-      case "rect": // 5e rectangular AoEs are always cubes
+      case "rect": // Shaper rectangular AoEs are always cubes
         templateData.distance = Math.hypot(target.value, target.value);
         templateData.width = target.value;
         templateData.direction = 45;
         break;
-      case "ray": // 5e rays are most commonly 1 square in width
+      case "ray": // Shaper rays are most commonly 1 square in width
         templateData.width = target.width ?? canvas.dimensions.distance;
         break;
       default:

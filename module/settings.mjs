@@ -11,20 +11,6 @@ export default function registerSystemSettings() {
     default: ""
   });
 
-  // Rest Recovery Rules
-  game.settings.register("shaper", "restVariant", {
-    name: "SETTINGS.ShaperRestN",
-    hint: "SETTINGS.ShaperRestL",
-    scope: "world",
-    config: true,
-    default: "normal",
-    type: String,
-    choices: {
-      normal: "SETTINGS.ShaperRestPHB",
-      gritty: "SETTINGS.ShaperRestGritty",
-      epic: "SETTINGS.ShaperRestEpic"
-    }
-  });
 
   // Diagonal Movement Rule
   game.settings.register("shaper", "diagonalMovement", {
@@ -35,22 +21,10 @@ export default function registerSystemSettings() {
     default: "EUCL",
     type: String,
     choices: {
-      555: "SETTINGS.ShaperDiagPHB",
-      5105: "SETTINGS.ShaperDiagDMG",
+      555: "SETTINGS.ShaperDiagSUP",
       EUCL: "SETTINGS.ShaperDiagEuclidean"
     },
     onChange: rule => canvas.grid.diagonalRule = rule
-  });
-
-
-  // Disable Experience Tracking
-  game.settings.register("shaper", "disableExperienceTracking", {
-    name: "SETTINGS.ShaperNoExpN",
-    hint: "SETTINGS.ShaperNoExpL",
-    scope: "world",
-    config: true,
-    default: false,
-    type: Boolean
   });
 
 
@@ -67,23 +41,4 @@ export default function registerSystemSettings() {
     }
   });
 
-  // Critical Damage Modifiers
-  game.settings.register("shaper", "criticalDamageModifiers", {
-    name: "SETTINGS.ShaperCriticalModifiersN",
-    hint: "SETTINGS.ShaperCriticalModifiersL",
-    scope: "world",
-    config: true,
-    type: Boolean,
-    default: false
-  });
-
-  // Critical Damage Maximize
-  game.settings.register("shaper", "criticalDamageMaxDice", {
-    name: "SETTINGS.ShaperCriticalMaxDiceN",
-    hint: "SETTINGS.ShaperCriticalMaxDiceL",
-    scope: "world",
-    config: true,
-    type: Boolean,
-    default: false
-  });
 }

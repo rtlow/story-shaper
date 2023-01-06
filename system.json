@@ -8,13 +8,13 @@
     "verified": "10",
     "maximum": "10"
   },
-  "url": "https://github.com/rtlow/dnd5e-shaper",
-  "manifest": "https://raw.githubusercontent.com/rtlow/dnd5e-shaper/master/system.json",
-  "download": "https://github.com/rtlow/dnd5e-shaper/releases/download/release-0.1.7.1/shaper-release-0.1.7.1.zip",
+  "url": "https://github.com/rtlow/story-shaper",
+  "manifest": "https://raw.githubusercontent.com/rtlow/story-shaper/master/system.json",
+  "download": "https://github.com/rtlow/story-shaper/releases/download/release-0.1.7.1/shaper-release-0.1.7.1.zip",
   "authors": [
     {
       "name": "guiyii",
-      "url": "https://github.com/rtlow/dnd5e-shaper",
+      "url": "https://github.com/rtlow/story-shaper",
       "flags": {}
     }
   ],

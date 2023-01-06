@@ -427,31 +427,14 @@ preLocalize("conditionTypes", { sort: true });
  * @enum {string}
  */
 SHAPER.languages = {
-  common: "SHAPER.LanguagesCommon",
-  aarakocra: "SHAPER.LanguagesAarakocra",
-  abyssal: "SHAPER.LanguagesAbyssal",
-  aquan: "SHAPER.LanguagesAquan",
-  auran: "SHAPER.LanguagesAuran",
-  celestial: "SHAPER.LanguagesCelestial",
-  deep: "SHAPER.LanguagesDeepSpeech",
-  draconic: "SHAPER.LanguagesDraconic",
-  druidic: "SHAPER.LanguagesDruidic",
-  dwarvish: "SHAPER.LanguagesDwarvish",
-  elvish: "SHAPER.LanguagesElvish",
-  giant: "SHAPER.LanguagesGiant",
-  gith: "SHAPER.LanguagesGith",
-  gnomish: "SHAPER.LanguagesGnomish",
-  goblin: "SHAPER.LanguagesGoblin",
-  gnoll: "SHAPER.LanguagesGnoll",
-  halfling: "SHAPER.LanguagesHalfling",
-  ignan: "SHAPER.LanguagesIgnan",
-  infernal: "SHAPER.LanguagesInfernal",
-  orc: "SHAPER.LanguagesOrc",
-  primordial: "SHAPER.LanguagesPrimordial",
-  sylvan: "SHAPER.LanguagesSylvan",
-  terran: "SHAPER.LanguagesTerran",
-  cant: "SHAPER.LanguagesThievesCant",
-  undercommon: "SHAPER.LanguagesUndercommon"
+  english: "SHAPER.LanguagesEnglish",
+  japanese: "SHAPER.LanguagesJapanese",
+  spanish: "SHAPER.LanguagesSpanish",
+  mandarin: "SHAPER.LanguagesMandarin",
+  latin: "SHAPER.LanguagesLatin",
+  french: "SHAPER.LanguagesFrench",
+  german: "SHAPER.LanguagesGerman",
+  hindi: "SHAPER.LanguagesHindi"
 };
 preLocalize("languages", { sort: true });
 

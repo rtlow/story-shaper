@@ -4,8 +4,8 @@
  * Author: Atropos
  * Software License: MIT
  * Content License: https://media.wizards.com/2016/downloads/DND/SRD-OGL_V5.1.pdf
- * Repository: https://github.com/foundryvtt/shaper
- * Issue Tracker: https://github.com/foundryvtt/shaper/issues
+ * Repository: https://github.com/rtlow/story-shaper
+ * Issue Tracker: https://github.com/rtlow/story-shaper/issues
  */
 
 // Import Configuration

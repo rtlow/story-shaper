@@ -499,6 +499,16 @@
 "SHAPER.LairActionLabel": "Lair Action",
 "SHAPER.LairActionInitiative": "Lair Action Initiative Count",
 "SHAPER.Languages": "Languages",
+
+"SHAPER.LanguagesEnglish": "English",
+"SHAPER.LanguagesJapanese": "Japanese",
+"SHAPER.LanguagesSpanish": "Spanish",
+"SHAPER.LanguagesMandarin": "Mandarin",
+"SHAPER.LanguagesLatin": "Latin",
+"SHAPER.LanguagesFrench": "French",
+"SHAPER.LanguagesGerman": "German",
+"SHAPER.LanguagesHindi": "Hindi",
+
 "SHAPER.LanguagesAarakocra": "Aarakocra",
 "SHAPER.LanguagesAbyssal": "Abyssal",
 "SHAPER.LanguagesAquan": "Aquan",

@@ -28,9 +28,7 @@ export default class ActorSheetShaperCharacter extends ActorSheetShaper {
       return arr.concat([stat]);
     }, []);
 
-    return foundry.utils.mergeObject(context, {
-      disableExperience: game.settings.get("shaper", "disableExperienceTracking")
-    });
+    return context;
   }
 
   /* -------------------------------------------- */

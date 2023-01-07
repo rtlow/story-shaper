@@ -179,9 +179,7 @@ export async function damageRoll({
     critical: isFF ? isCritical : false,
     criticalBonusDice,
     criticalMultiplier,
-    criticalBonusDamage,
-    multiplyNumeric: multiplyNumeric ?? game.settings.get("shaper", "criticalDamageModifiers"),
-    powerfulCritical: powerfulCritical ?? game.settings.get("shaper", "criticalDamageMaxDice")
+    criticalBonusDamage
   });
 
   // Prompt a Dialog to further configure the DamageRoll

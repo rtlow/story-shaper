@@ -114,6 +114,7 @@
 "SHAPER.ConImm": "Condition Immunities",
 
 "SHAPER.ConsumeTitle": "Resource Consumption",
+"SHAPER.ConsumeAttribute": "Attribute",
 "SHAPER.UpkeepTitle": "Upkeep",
 
 "SHAPER.ConsumeHitDiceLargest": "Largest Available",

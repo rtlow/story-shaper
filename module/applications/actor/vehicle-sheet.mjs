@@ -1,9 +1,9 @@
-import ActorSheet5e from "./base-sheet.mjs";
+import ActorSheetShaper from "./base-sheet.mjs";
 
 /**
  * An Actor sheet for Vehicle type actors.
  */
-export default class ActorSheet5eVehicle extends ActorSheet5e {
+export default class ActorSheetShaperVehicle extends ActorSheetShaper {
 
   /** @inheritDoc */
   static get defaultOptions() {
@@ -252,7 +252,7 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
   /**
    * Handle saving a cargo row (i.e. crew or passenger) in-sheet.
    * @param {Event} event              Triggering event.
-   * @returns {Promise<Actor5e>|null}  Actor after update if any changes were made.
+   * @returns {Promise<ActorShaper>|null}  Actor after update if any changes were made.
    * @private
    */
   _onCargoRowChange(event) {
@@ -283,7 +283,7 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
   /**
    * Handle editing certain values like quantity, price, and weight in-sheet.
    * @param {Event} event  Triggering event.
-   * @returns {Promise<Item5e>}  Item with updates applied.
+   * @returns {Promise<ItemShaper>}  Item with updates applied.
    * @private
    */
   _onEditInSheet(event) {
@@ -347,7 +347,7 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
   /**
    * Special handling for editing HP to clamp it within appropriate range.
    * @param {Event} event  Triggering event.
-   * @returns {Promise<Item5e>}  Item after the update is applied.
+   * @returns {Promise<ItemShaper>}  Item after the update is applied.
    * @private
    */
   _onHPChange(event) {
@@ -364,7 +364,7 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
   /**
    * Special handling for editing quantity value of equipment and weapons inside the features tab.
    * @param {Event} event  Triggering event.
-   * @returns {Promise<Item5e>}  Item after the update is applied.
+   * @returns {Promise<ItemShaper>}  Item after the update is applied.
    * @private
    */
   _onQtyChange(event) {
@@ -381,7 +381,7 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
   /**
    * Handle toggling an item's crewed status.
    * @param {Event} event  Triggering event.
-   * @returns {Promise<Item5e>}  Item after the toggling is applied.
+   * @returns {Promise<ItemShaper>}  Item after the toggling is applied.
    * @private
    */
   _onToggleItem(event) {

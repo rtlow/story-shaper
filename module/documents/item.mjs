@@ -5,11 +5,11 @@ import AbilityUseDialog from "../applications/item/ability-use-dialog.mjs";
 /**
  * Override and extend the basic Item implementation.
  */
-export default class Item5e extends Item {
+export default class ItemShaper extends Item {
 
   /**
    * Caches an item linked to this one, such as a subclass associated with a class.
-   * @type {Item5e}
+   * @type {ItemShaper}
    * @private
    */
   _classLink;
@@ -240,7 +240,7 @@ export default class Item5e extends Item {
   /**
    * Compute item attributes which might depend on prepared actor data. If this item is embedded this method will
    * be called after the actor's data is prepared.
-   * Otherwise, it will be called at the end of `Item5e#prepareDerivedData`.
+   * Otherwise, it will be called at the end of `ItemShaper#prepareDerivedData`.
    */
   prepareFinalAttributes() {
 
@@ -266,7 +266,7 @@ export default class Item5e extends Item {
 
   /**
    * Populate a label with the compiled and simplified damage formula based on owned item
-   * actor data. This is only used for display purposes and is not related to `Item5e#rollDamage`.
+   * actor data. This is only used for display purposes and is not related to `ItemShaper#rollDamage`.
    * @returns {{damageType: string, formula: string, label: string}[]}
    */
   getDerivedDamageLabel() {
@@ -469,7 +469,7 @@ export default class Item5e extends Item {
      * A hook event that fires before an item usage is configured.
      * @function shaper.preUseItem
      * @memberof hookEvents
-     * @param {Item5e} item                  Item being used.
+     * @param {ItemShaper} item                  Item being used.
      * @param {ItemUseConfiguration} config  Configuration data for the item usage being prepared.
      * @param {ItemUseOptions} options       Additional options used for configuring item usage.
      * @returns {boolean}                    Explicitly return `false` to prevent item from being used.
@@ -487,7 +487,7 @@ export default class Item5e extends Item {
      * A hook event that fires before an item's resource consumption has been calculated.
      * @function shaper.preItemUsageConsumption
      * @memberof hookEvents
-     * @param {Item5e} item                  Item being used.
+     * @param {ItemShaper} item                  Item being used.
      * @param {ItemUseConfiguration} config  Configuration data for the item usage being prepared.
      * @param {ItemUseOptions} options       Additional options used for configuring item usage.
      * @returns {boolean}                    Explicitly return `false` to prevent item from being used.
@@ -503,7 +503,7 @@ export default class Item5e extends Item {
      * changes have been made.
      * @function shaper.itemUsageConsumption
      * @memberof hookEvents
-     * @param {Item5e} item                     Item being used.
+     * @param {ItemShaper} item                     Item being used.
      * @param {ItemUseConfiguration} config     Configuration data for the item usage being prepared.
      * @param {ItemUseOptions} options          Additional options used for configuring item usage.
      * @param {object} usage
@@ -536,7 +536,7 @@ export default class Item5e extends Item {
      * A hook event that fires when an item is used, after the measured template has been created if one is needed.
      * @function shaper.useItem
      * @memberof hookEvents
-     * @param {Item5e} item                                Item being used.
+     * @param {ItemShaper} item                                Item being used.
      * @param {ItemUseConfiguration} config                Configuration data for the roll.
      * @param {ItemUseOptions} options                     Additional options for configuring item usage.
      * @param {MeasuredTemplateDocument[]|null} templates  The measured templates if they were created.
@@ -740,7 +740,7 @@ export default class Item5e extends Item {
      * A hook event that fires before an item chat card is created.
      * @function shaper.preDisplayCard
      * @memberof hookEvents
-     * @param {Item5e} item             Item for which the chat card is being displayed.
+     * @param {ItemShaper} item             Item for which the chat card is being displayed.
      * @param {object} chatData         Data used to create the chat message.
      * @param {ItemUseOptions} options  Options which configure the display of the item chat card.
      */
@@ -756,7 +756,7 @@ export default class Item5e extends Item {
      * A hook event that fires after an item chat card is created.
      * @function shaper.displayCard
      * @memberof hookEvents
-     * @param {Item5e} item              Item for which the chat card is being displayed.
+     * @param {ItemShaper} item              Item for which the chat card is being displayed.
      * @param {ChatMessage|object} card  The created ChatMessage instance or ChatMessageData depending on whether
      *                                   options.createMessage was set to `true`.
      */
@@ -891,7 +891,7 @@ export default class Item5e extends Item {
      * A hook event that fires before an attack is rolled for an Item.
      * @function shaper.preRollAttack
      * @memberof hookEvents
-     * @param {Item5e} item                  Item for which the roll is being performed.
+     * @param {ItemShaper} item                  Item for which the roll is being performed.
      * @param {D10RollConfiguration} config  Configuration data for the pending roll.
      * @returns {boolean}                    Explicitly return false to prevent the roll from being performed.
      */
@@ -904,7 +904,7 @@ export default class Item5e extends Item {
      * A hook event that fires after an attack has been rolled for an Item.
      * @function shaper.rollAttack
      * @memberof hookEvents
-     * @param {Item5e} item          Item for which the roll was performed.
+     * @param {ItemShaper} item          Item for which the roll was performed.
      * @param {D10Roll} roll         The resulting roll.
      */
     Hooks.callAll("shaper.rollAttack", this, roll);
@@ -972,7 +972,7 @@ export default class Item5e extends Item {
      * A hook event that fires before a damage is rolled for an Item.
      * @function shaper.preRollDamage
      * @memberof hookEvents
-     * @param {Item5e} item                     Item for which the roll is being performed.
+     * @param {ItemShaper} item                     Item for which the roll is being performed.
      * @param {DamageRollConfiguration} config  Configuration data for the pending roll.
      * @returns {boolean}                       Explicitly return false to prevent the roll from being performed.
      */
@@ -984,7 +984,7 @@ export default class Item5e extends Item {
      * A hook event that fires after a damage has been rolled for an Item.
      * @function shaper.rollDamage
      * @memberof hookEvents
-     * @param {Item5e} item      Item for which the roll was performed.
+     * @param {ItemShaper} item      Item for which the roll was performed.
      * @param {DamageRoll} roll  The resulting roll.
      */
     if ( roll ) Hooks.callAll("shaper.rollDamage", this, roll);
@@ -1016,7 +1016,7 @@ export default class Item5e extends Item {
      * A hook event that fires before a formula is rolled for an Item.
      * @function shaper.preRollFormula
      * @memberof hookEvents
-     * @param {Item5e} item                 Item for which the roll is being performed.
+     * @param {ItemShaper} item                 Item for which the roll is being performed.
      * @param {object} config               Configuration data for the pending roll.
      * @param {string} config.formula       Formula that will be rolled.
      * @param {object} config.data          Data used when evaluating the roll.
@@ -1040,7 +1040,7 @@ export default class Item5e extends Item {
      * A hook event that fires after a formula has been rolled for an Item.
      * @function shaper.rollFormula
      * @memberof hookEvents
-     * @param {Item5e} item  Item for which the roll was performed.
+     * @param {ItemShaper} item  Item for which the roll was performed.
      * @param {Roll} roll    The resulting roll.
      */
     Hooks.callAll("shaper.rollFormula", this, roll);

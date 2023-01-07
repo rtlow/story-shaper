@@ -1,7 +1,7 @@
 /**
  * A specialized Dialog subclass for ability usage.
  *
- * @param {Item5e} item             Item that is being used.
+ * @param {ItemShaper} item             Item that is being used.
  * @param {object} [dialogData={}]  An object of dialog data which configures how the modal window is rendered.
  * @param {object} [options={}]     Dialog rendering options.
  */
@@ -12,7 +12,7 @@ export default class AbilityUseDialog extends Dialog {
 
     /**
      * Store a reference to the Item document being used
-     * @type {Item5e}
+     * @type {ItemShaper}
      */
     this.item = item;
   }
@@ -24,7 +24,7 @@ export default class AbilityUseDialog extends Dialog {
   /**
    * A constructor function which displays the Spell Cast Dialog app for a given Actor and Item.
    * Returns a Promise which resolves to the dialog FormData once the workflow has been completed.
-   * @param {Item5e} item  Item being used.
+   * @param {ItemShaper} item  Item being used.
    * @returns {Promise}    Promise that is resolved when the use dialog is acted upon.
    */
   static async create(item) {

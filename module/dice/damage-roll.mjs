@@ -1,5 +1,5 @@
 /**
- * A type of Roll specific to a damage (or healing) roll in the 5e system.
+ * A type of Roll specific to a damage (or healing) roll in the Shaper system.
  * @param {string} formula                       The string formula to parse
  * @param {object} data                          The data object against which to parse attributes within the formula
  * @param {object} [options={}]                  Extra optional arguments which describe or modify the DamageRoll

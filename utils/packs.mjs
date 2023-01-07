@@ -16,13 +16,13 @@ const parsedArgs = yargs(process.argv).argv;
 
 /**
  * Folder where the compiled compendium packs should be located relative to the
- * base 5e system folder.
+ * base Shaper system folder.
  * @type {string}
  */
 const PACK_DEST = "packs";
 
 /**
- * Folder where source JSON files should be located relative to the 5e system folder.
+ * Folder where source JSON files should be located relative to the Shaper system folder.
  * @type {string}
  */
 const PACK_SRC = "packs/src";

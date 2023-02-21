@@ -35,41 +35,78 @@ export default class ActorSheetShaperNPC extends ActorSheetShaper {
   /** @override */
   _prepareItems(context) {
 
-    // Categorize Items as Features
-    const features = {
-      actions: { label: game.i18n.localize("SHAPER.ActionPl"), items: [], hasActions: true,
-        dataset: {type: "feat", "activation.type": "action"} },
-      passive: { label: game.i18n.localize("SHAPER.Features"), items: [], dataset: {type: "feat"} }
+    // Categorize items as inventory, features
+    const inventory = {
+      loot: { label: "SHAPER.ItemTypeLootPl", items: [], dataset: {type: "loot"} }
     };
 
-    // Start by classifying items into groups for rendering
-    let [spells, other] = context.items.reduce((arr, item) => {
+    // Partition items by category
+    let {items, feats} = context.items.reduce((obj, item) => {
       const {quantity, uses, recharge, target} = item.system;
+
+      // Item details
       item.img = item.img || CONST.DEFAULT_TOKEN;
       item.isStack = Number.isNumeric(quantity) && (quantity !== 1);
+
+
+      // Item usage
       item.hasUses = uses && (uses.max > 0);
       item.isOnCooldown = recharge && !!recharge.value && (recharge.charged === false);
-      
-      item.hasTarget = !!target && !(["none", ""].includes(target.type));
-      if ( item.type === "spell" ) arr[0].push(item);
-      else arr[1].push(item);
-      return arr;
-    }, [[], []]);
 
-    // Apply item filters
-    other = this._filterItems(other, this._filters.features);
+      item.hasTarget = !!target && !(["none", ""].includes(target.type));
+
+      // Item toggle state
+      this._prepareItemToggleState(item);
+
+      // Classify items into types
+      if ( item.type === "feat" ) obj.feats.push(item);
+      else if ( Object.keys(inventory).includes(item.type) ) obj.items.push(item);
+      return obj;
+    }, { items: [], feats: [] });
+
+    // Apply active item filters
+    items = this._filterItems(items, this._filters.inventory);
+    feats = this._filterItems(feats, this._filters.features);
+
+    // Organize items
+    for ( let i of items ) {
+      i.system.quantity = i.system.quantity || 0;
+      inventory[i.type].items.push(i);
+    }
+
 
     // Organize Features
-    for ( let item of other ) {
-      if ( item.type === "feat" ) {
-        if ( item.system.activation.type ) features.actions.items.push(item);
-        else features.passive.items.push(item);
-      }
+    const features = {
+      active: {
+        label: "SHAPER.FeatureActive", items: [],
+        hasActions: true, dataset: {type: "feat", "activation.type": "action"} },
+      passive: {
+        label: "SHAPER.FeaturePassive", items: [],
+        hasActions: false, dataset: {type: "feat"} }
+    };
+    for ( const feat of feats ) {     
+      if ( feat.system.activation?.type ) features.active.items.push(feat);
+      else features.passive.items.push(feat);
     }
 
     // Assign and return
+    context.inventory = Object.values(inventory);
     context.features = Object.values(features);
   }
+
+  /* -------------------------------------------- */
+
+  /**
+   * A helper method to establish the displayed preparation state for an item.
+   * @param {ItemShaper} item  Item being prepared for display. *Will be mutated.*
+   * @private
+   */
+  _prepareItemToggleState(item) {
+    const isActive = !!item.system.equipped;
+    item.toggleClass = isActive ? "active" : "";
+    item.toggleTitle = game.i18n.localize(isActive ? "SHAPER.Equipped" : "SHAPER.Unequipped");
+  }
+
 
 
   /* -------------------------------------------- */

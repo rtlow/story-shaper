@@ -2,7 +2,7 @@
   "id": "shaper",
   "title": "Story Shaper System",
   "description": "An implementation of the Story Shaper System in the Foundry Virtual Tabletop environment.",
-  "version": "0.1.9.0",
+  "version": "0.1.9.1",
   "compatibility": {
     "minimum": "10",
     "verified": "10",
@@ -10,7 +10,7 @@
   },
   "url": "https://github.com/rtlow/story-shaper",
   "manifest": "https://raw.githubusercontent.com/rtlow/story-shaper/master/system.json",
-  "download": "https://github.com/rtlow/story-shaper/releases/download/release-0.1.9.0/shaper-release-0.1.9.0.zip",
+  "download": "https://github.com/rtlow/story-shaper/releases/download/release-0.1.9.1/shaper-release-0.1.9.1.zip",
   "authors": [
     {
       "name": "guiyii",

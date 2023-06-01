@@ -39,11 +39,10 @@ jobs:
       with:
         files: 'system.json'
       env:
-        TAG: ${GITHUB_REF/refs\/tags\//}
-        VERSION: ${GITHUB_REF/refs\/tags\//}
+        VERSION: ${{ github.event.release.tag_name }}
         URL: https://github.com/${{ github.repository }}
-        MANIFEST: https://github.com/${{github.repository}}/releases/download/$TAG/system.json
-        DOWNLOAD: https://github.com/${{github.repository}}/releases/download/$TAG/shaper-$TAG.zip
+        MANIFEST: https://github.com/${{ github.repository }}/releases/download/${{ github.event.release.tag_name }}/system.json
+        DOWNLOAD: https://github.com/${{ github.repository }}/releases/download/${{ github.event.release.tag_name }}/shaper-${{ github.event.release.tag_name }}.zip
     
     # Run some tests to make sure our `system.json` is correct
     # Exit before setting up node if not

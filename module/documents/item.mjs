@@ -185,6 +185,10 @@ export default class ItemShaper extends Item {
     if ( !("activation" in this.system) ) return;
     const C = CONFIG.SHAPER;
 
+    // Action Type Label
+    const actionType = this.system.actionType ?? '';
+    this.labels.actionType = game.i18n.localize(C.itemActionTypes[actionType]);
+
     // Ability Activation Label
     const act = this.system.activation ?? {};
     this.labels.activation = [act.cost, C.abilityActivationTypes[act.type]].filterJoin(" ");
@@ -828,7 +832,7 @@ export default class ItemShaper extends Item {
    * @private
    */
   _featChatData(data, labels, props) {
-    props.push(data.requirements);
+    props.push(labels.actionType);
   }
 
   /* -------------------------------------------- */

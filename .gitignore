@@ -12,3 +12,6 @@ node_modules/
 
 # OS Specific
 .DS_Store
+
+packs/*/LOG
+packs/*/LOG.old

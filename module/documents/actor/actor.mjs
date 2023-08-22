@@ -266,6 +266,8 @@ export default class ActorShaper extends Actor {
     
     hp.bonus = hp.bonus ?? 0;
 
+    hp.bonusScale = hp.bonusScale ?? 0;
+
     const scale0 = this.system.abilities[hp.scale0];
     const scale1 = this.system.abilities[hp.scale1];
     
@@ -273,7 +275,7 @@ export default class ActorShaper extends Actor {
 
     const base = 3 * ( scale0.value + scale1.value ) + 15;
 
-    const vim = vit.value * ( 5 + scale0.value + scale1.value );
+    const vim = vit.value * ( 5 + scale0.value + scale1.value + hp.bonusScale );
 
     hp.max = base + vim + hp.bonus;
 
@@ -287,13 +289,15 @@ export default class ActorShaper extends Actor {
       const mp = this.system.attributes.mp ?? {};
 
       mp.bonus = mp.bonus ?? 0;
+
+      mp.bonusScale = mp.bonusScale ?? 0;
   
       const scale0 = this.system.abilities[mp.scale0];
       const scale1 = this.system.abilities[mp.scale1];
       
       const cap = this.system.counts['capacity'];
   
-      const base = 3 * ( scale0.value + scale1.value ) + 15;
+      const base = 3 * ( scale0.value + scale1.value + mp.bonusScale ) + 15;
   
       const vig = cap.value * ( 5 + scale0.value + scale1.value );
       
@@ -488,13 +492,16 @@ export default class ActorShaper extends Actor {
       data.checkBonus = Roll.replaceFormulaData(globalBonuses.check, data);
     }
 
+    /*
     // Ability-specific check bonus
-    // TODO: See what this does
     if ( abl0?.bonuses?.check || abl1?.bonuses?.check ) {
       data.abilityCheckBonus = Roll.replaceFormulaData(abl0.bonuses.check, data);
       data.abilityCheckBonus = Roll.replaceFormulaData(abl1.bonuses.check, data);
     }
     else data.abilityCheckBonus = 0;
+    */
+   // Don't know what this does, so leave it alone
+    data.abilityCheckBonus = 0
 
     // Skill-specific skill bonus
     if ( skl.bonuses?.check ) {

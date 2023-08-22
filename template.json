@@ -29,6 +29,7 @@
             "min": 0,
             "max": 10,
             "bonus": 0,
+            "bonusScale": 0,
             "scale0": "str",
             "scale1": "tgh"
           },
@@ -37,6 +38,7 @@
             "min": 0,
             "max": 10,
             "bonus": 0,
+            "bonusScale": 0,
             "scale0": "mnd",
             "scale1": "hrt"
           },

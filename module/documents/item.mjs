@@ -132,10 +132,6 @@ export default class ItemShaper extends Item {
   /* -------------------------------------------- */
   /*  Data Preparation                            */
   /* -------------------------------------------- */
-
-  /*
-   * TODO: Look at these and modify them
-  */
  
   /** @inheritDoc */
   prepareDerivedData() {

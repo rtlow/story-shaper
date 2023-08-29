@@ -12,3 +12,21 @@ node_modules/
 
 # OS Specific
 .DS_Store
+packs/abilities-tier-0/CURRENT
+packs/abilities-tier-0/LOG
+packs/abilities-tier-0/LOG.old
+packs/abilities-tier-1/CURRENT
+packs/abilities-tier-1/LOG
+packs/abilities-tier-1/LOG.old
+packs/abilities-tier-2/CURRENT
+packs/abilities-tier-2/LOG
+packs/abilities-tier-2/LOG.old
+packs/lessons/CURRENT
+packs/lessons/LOG
+packs/lessons/LOG.old
+packs/talents/CURRENT
+packs/talents/LOG
+packs/talents/LOG.old
+packs/utilities/CURRENT
+packs/utilities/LOG
+packs/utilities/LOG.old

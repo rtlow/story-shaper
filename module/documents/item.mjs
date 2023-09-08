@@ -33,7 +33,9 @@ export default class ItemShaper extends Item {
       // If a specific attack type is defined
       if ( this.hasAttack ) return {
         attack: "physO",
-        spell: "menO"
+        dattack: "physD",
+        spell: "menO",
+        dspell: "menD"
       }[this.system.actionType];
     }
 
@@ -58,7 +60,7 @@ export default class ItemShaper extends Item {
    * @type {boolean}
    */
    get hasAttack() {
-    return ["attack", "spell"].includes(this.system.actionType);
+    return ["attack", "dattack", "spell", "dspell"].includes(this.system.actionType);
   }
 
   /* -------------------------------------------- */

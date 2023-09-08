@@ -57,10 +57,12 @@
 "SHAPER.Action": "Action",
 "SHAPER.ActionPl": "Actions",
 
-"SHAPER.ActionAttack": "Attack",
-"SHAPER.ActionSpell": "Spell",
+"SHAPER.ActionAttack": "Attack (Physical Offense)",
+"SHAPER.ActionSpell": "Spell (Mental Offense)",
 "SHAPER.ActionAuxillary": "Auxillary",
 "SHAPER.ActionHeal": "Healing",
+"SHAPER.ActionDefAttack": "Attack (Physical Defense)",
+"SHAPER.ActionDefSpell": "Spell (Mental Defense)",
 
 "SHAPER.ActionWarningNoItem": "The requested item {item} no longer exists on Actor {name}",
 "SHAPER.ActionWarningNoToken": "You must have one or more controlled Tokens in order to use this option.",

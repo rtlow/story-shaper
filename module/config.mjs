@@ -213,7 +213,9 @@ SHAPER.tokenHPColors = {
  */
 SHAPER.itemActionTypes = {
   attack: "SHAPER.ActionAttack",
+  dattack: "SHAPER.ActionDefAttack",
   spell: "SHAPER.ActionSpell",
+  dspell: "SHAPER.ActionDefSpell",
   aux: "SHAPER.ActionAuxillary",
   heal: "SHAPER.ActionHeal"
 };

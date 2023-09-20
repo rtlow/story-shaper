@@ -297,7 +297,7 @@ export default class ActorShaper extends Actor {
       
       const cap = this.system.counts['capacity'];
   
-      const base = 3 * ( scale0.value + scale1.value + mp.bonusScale ) + 15;
+      const base = 3 * ( scale0.value + scale1.value ) + 15;
   
       const vig = cap.value * ( 5 + scale0.value + scale1.value + mp.bonusScale );
       

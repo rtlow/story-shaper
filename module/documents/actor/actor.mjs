@@ -299,7 +299,7 @@ export default class ActorShaper extends Actor {
   
       const base = 3 * ( scale0.value + scale1.value + mp.bonusScale ) + 15;
   
-      const vig = cap.value * ( 5 + scale0.value + scale1.value );
+      const vig = cap.value * ( 5 + scale0.value + scale1.value + mp.bonusScale );
       
       mp.max = base + vig + mp.bonus;
   

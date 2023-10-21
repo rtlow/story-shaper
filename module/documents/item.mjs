@@ -226,6 +226,8 @@ export default class ItemShaper extends Item {
    * @protected
    */
   _prepareAction() {
+
+    // TODO: Add Cost, Cooldown, and Upkeep to this
     if ( !("actionType" in this.system) ) return;
     let dmg = this.system.damage || {};
     if ( dmg.parts ) {

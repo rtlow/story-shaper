@@ -128,6 +128,17 @@ export default class ItemSheetShaper extends ItemSheet {
     if ( !foundry.utils.isEmpty(this.item.system.activation) ) {
       props.push(labels.activation, labels.range, labels.target, labels.duration);
     }
+    
+    // Resource Consumption
+    if ( this.item.hasConsumeResources ) {
+      props.push(labels.consume);
+    }
+
+    // Recharge
+    if ( this.item.hasLimitedUses ) {
+      props.push(labels.recharge);
+    }
+
     return props.filter(p => !!p);
   }
 

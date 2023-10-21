@@ -397,6 +397,20 @@ SHAPER.trackableAttributes = [
 
 /* -------------------------------------------- */
 
+/* -------------------------------------------- */
+
+/**
+ * Names of the consumable resources
+ * @type {string}
+ */
+ SHAPER.consumableResourcesNames = {
+  "attributes.hp.value": "SHAPER.HP",
+  "attributes.mp.value": "SHAPER.MP"
+ };
+ preLocalize("consumableResourcesNames", { sort: true })
+
+/* -------------------------------------------- */
+
 /**
  * A selection of actor and item attributes that are valid targets for item resource consumption.
  * @enum {string}

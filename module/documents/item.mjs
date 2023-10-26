@@ -134,7 +134,7 @@ export default class ItemShaper extends Item {
    * @type {boolean}
    */
   get hasConsumeResources() {
-    let consumeTarget = this.system.consume.target || {};
+    let consumeTarget = this.system.consume?.target || {};
     return consumeTarget && ( consumeTarget in CONFIG.SHAPER.consumableResourcesNames )
   }
 

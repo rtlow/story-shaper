@@ -213,7 +213,9 @@ SHAPER.tokenHPColors = {
  */
 SHAPER.itemActionTypes = {
   attack: "SHAPER.ActionAttack",
+  dattack: "SHAPER.ActionDefAttack",
   spell: "SHAPER.ActionSpell",
+  dspell: "SHAPER.ActionDefSpell",
   aux: "SHAPER.ActionAuxillary",
   heal: "SHAPER.ActionHeal"
 };
@@ -392,6 +394,20 @@ SHAPER.trackableAttributes = [
   "attributes.hp.value",
   "attributes.mp.value"
 ];
+
+/* -------------------------------------------- */
+
+/* -------------------------------------------- */
+
+/**
+ * Names of the consumable resources
+ * @type {string}
+ */
+ SHAPER.consumableResourcesNames = {
+  "attributes.hp.value": "SHAPER.HP",
+  "attributes.mp.value": "SHAPER.MP"
+ };
+ preLocalize("consumableResourcesNames", { sort: true })
 
 /* -------------------------------------------- */
 

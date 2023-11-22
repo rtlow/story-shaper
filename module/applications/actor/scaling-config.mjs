@@ -55,6 +55,7 @@ export default class ActorScalingConfig extends DocumentSheet {
           scale0: src.system.attributes[this._statId].scale0,
           scale1: src.system.attributes[this._statId].scale1,
           bonus: src.system.attributes[this._statId].bonus,
+          bonusScale: src.system.attributes[this._statId].bonusScale,
           hasBonus: true
         };
       default:
@@ -85,6 +86,7 @@ export default class ActorScalingConfig extends DocumentSheet {
         updateData[`system.attributes.${this._statId}.scale0`] = updates.scale0;
         updateData[`system.attributes.${this._statId}.scale1`] = updates.scale1;
         updateData[`system.attributes.${this._statId}.bonus`] = updates.bonus;
+        updateData[`system.attributes.${this._statId}.bonusScale`] = updates.bonusScale;
         break;
       default:
         updateData[`system.stats.${this._statId}.scale0`] = updates.scale0;

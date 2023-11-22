@@ -33,7 +33,9 @@ export default class ItemShaper extends Item {
       // If a specific attack type is defined
       if ( this.hasAttack ) return {
         attack: "physO",
-        spell: "menO"
+        dattack: "physD",
+        spell: "menO",
+        dspell: "menD"
       }[this.system.actionType];
     }
 
@@ -58,7 +60,7 @@ export default class ItemShaper extends Item {
    * @type {boolean}
    */
    get hasAttack() {
-    return ["attack", "spell"].includes(this.system.actionType);
+    return ["attack", "dattack", "spell", "dspell"].includes(this.system.actionType);
   }
 
   /* -------------------------------------------- */
@@ -127,15 +129,19 @@ export default class ItemShaper extends Item {
 
   /* -------------------------------------------- */
 
+  /**
+   * Does the Item consume resources?
+   * @type {boolean}
+   */
+  get hasConsumeResources() {
+    let consumeTarget = this.system.consume?.target || {};
+    return consumeTarget && ( consumeTarget in CONFIG.SHAPER.consumableResourcesNames )
+  }
 
 
   /* -------------------------------------------- */
   /*  Data Preparation                            */
   /* -------------------------------------------- */
-
-  /*
-   * TODO: Look at these and modify them
-  */
  
   /** @inheritDoc */
   prepareDerivedData() {
@@ -215,9 +221,13 @@ export default class ItemShaper extends Item {
     if ( ["inst", "perm"].includes(dur.units) ) dur.value = null;
     this.labels.duration = [dur.value, C.timePeriods[dur.units]].filterJoin(" ");
 
+    // Resource Consumption Label
+    let consume = this.system.consume ?? {};
+    this.labels.consume = [`${consume.amount}`, C.consumableResourcesNames[consume.target]].filterJoin(" ");
+
     // Recharge Label
     let chg = this.system.recharge ?? {};
-    const chgSuffix = `${chg.value}${parseInt(chg.value) < 6 ? "+" : ""}`;
+    const chgSuffix = `${chg.value}`;
     this.labels.recharge = `${game.i18n.localize("SHAPER.Recharge")} [${chgSuffix}]`;
   }
 
@@ -228,6 +238,8 @@ export default class ItemShaper extends Item {
    * @protected
    */
   _prepareAction() {
+
+    // TODO: Add Cost, Cooldown, and Upkeep to this
     if ( !("actionType" in this.system) ) return;
     let dmg = this.system.damage || {};
     if ( dmg.parts ) {
@@ -812,8 +824,22 @@ export default class ItemShaper extends Item {
         labels.activation + (data.activation?.condition ? ` (${data.activation.condition})` : ""),
         labels.target,
         labels.range,
-        labels.duration
+        labels.duration,
       );
+    }
+
+    // Ability resource consumption properties
+    if ( this.hasConsumeResources ) {
+      props.push(
+        labels.consume
+      )
+    }
+
+    // Ability recharge properties
+    if ( this.hasLimitedUses ) { 
+      props.push(
+        labels.recharge
+      )
     }
 
     // Filter properties and return

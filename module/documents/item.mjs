@@ -966,6 +966,8 @@ export default class ItemShaper extends Item {
     const parts = dmg.parts.map(d => d[0]);
     const rollData = this.getRollData();
 
+    // TODO: Add Resistance and Vulnerability options
+
     // Configure the damage roll
     const actionFlavor = game.i18n.localize(this.system.actionType === "heal" ? "SHAPER.Healing" : "SHAPER.DamageRoll");
     const title = `${this.name} - ${actionFlavor}`;

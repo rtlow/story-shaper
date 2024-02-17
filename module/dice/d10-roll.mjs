@@ -127,13 +127,12 @@ export default class D10Roll extends Roll {
     // Clamp bane values that are too low
     if ( b < baneBoundary ) bane = baneBoundary.toString();
 
-
     // Handle Boon or Bane
     if ( this.hasAdvantage ) {
       d10.options.advantage = true;
     }
     else if ( this.hasDisadvantage ) {
-      d10.modifiers.push("r>" + bane)
+      d10.modifiers.push("r>=" + bane)
       d10.options.disadvantage = true;
     }
 

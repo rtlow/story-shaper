@@ -257,6 +257,8 @@ export default class ActorShaper extends Actor {
     init.total = init.mod + init.bonus + globalCheckBonus;
   }
 
+  // TODO: Re-implement temp-hp
+
   /**
    * Prepare the max hp for an actor.
    * @protected

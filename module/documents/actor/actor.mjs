@@ -281,6 +281,8 @@ export default class ActorShaper extends Actor {
 
     hp.max = base + vim + hp.bonus;
 
+    hp.temp = hp.temp ?? 0;
+
   }
 
     /**
@@ -430,8 +432,7 @@ export default class ActorShaper extends Actor {
     const dt = amount > 0 ? Math.min(tmp, amount) : 0;
 
     // Remaining goes to health
-    const tmpMax = parseInt(hp.tempmax) || 0;
-    const dh = Math.clamped(hp.value - (amount - dt), 0, hp.max + tmpMax);
+    const dh = Math.clamped(hp.value - (amount - dt), 0, hp.max);
 
     // Update the Actor
     const updates = {

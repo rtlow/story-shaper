@@ -61,6 +61,17 @@
                     </footer>
                 </li>
 
+                <li class="attribute health" data-stat="hp">
+                    <h4 class="attribute-name box-title">
+                        {{ localize "SHAPER.Shield" }}
+                    </h4>
+                    <div class="attribute-value multiple">
+                        <input name="system.attributes.hp.temp" type="number" step="any"
+                            value="{{system.attributes.hp.temp}}" placeholder="0"
+                            title="{{localize 'SHAPER.ShieldCurrent'}}">
+                    </div>
+                </li>
+
                 <li class="attribute movement">
                     <h4 class="attribute-name box-title">
                         {{ localize "SHAPER.Movement" }}

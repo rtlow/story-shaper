@@ -32,7 +32,7 @@
             "bonusScale": 0,
             "scale0": "str",
             "scale1": "tgh",
-            "shield": 0
+            "temp": 0
           },
           "mp": {
             "value": 10,

@@ -256,6 +256,8 @@
 "SHAPER.MindPointsCurrent": "Current Mind Points",
 "SHAPER.MindPointsMax": "Maximum Mind Points",
 "SHAPER.MP": "MP",
+"SHAPER.Shield": "Shield",
+"SHAPER.ShieldCurrent": "Current Shield",
 
 "SHAPER.HPConfig": "Configure Hit Points",
 "SHAPER.MPConfig": "Configure Mind Points",

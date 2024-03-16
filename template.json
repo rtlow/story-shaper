@@ -45,7 +45,9 @@
           },
           "init": {
             "value": 0,
-            "bonus": 0
+            "bonus": 0, 
+            "scale0": "fin",
+            "scale1": "sol"
           },
           "movement": {
             "walk": 1,

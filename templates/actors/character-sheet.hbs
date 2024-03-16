@@ -94,7 +94,10 @@
                 </li>
 
                 <li class="attribute initiative">
-                    <h4 class="attribute-name box-title rollable" data-action="rollInitiative">{{ localize "SHAPER.Initiative" }}</h4>
+                    <h4 class="attribute-name box-title rollable" data-action="rollInitiative">
+                        {{ localize "SHAPER.Initiative" }}
+                        <a class="config-button" data-action="init-scaling" title="{{localize 'SHAPER.InitConfig'}}"><i class="fas fa-cog"></i></a>
+                        </h4>
                     <div class="attribute-value">
                         <span>{{numberFormat system.attributes.init.total decimals=0 sign=true}}</span>
                     </div>

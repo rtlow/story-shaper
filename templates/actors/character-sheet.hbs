@@ -179,48 +179,15 @@
             <section class="rcenter-pane flexcol">
                 {{!-- Counters --}}
                 <div class="counters">
+                {{#each system.counts as |count id|}}
                     <div class="counter flexrow ">
-                        <h4>{{ localize "SHAPER.Injury" }}</h4>
+                        <h4>{{ localize count.label }}</h4>
                         <div class="counter-value">
-                            {{numberInput system.counts.injury.value name="system.counts.injury.value"
+                            {{numberInput count.value name=(concat "system.counts." id ".value")
                                 placeholder="0"}}
                         </div>
                     </div>
-                    <div class="counter flexrow ">
-                        <h4>{{ localize "SHAPER.OBuff" }}</h4>
-                        <div class="counter-value">
-                            {{numberInput system.counts.obuff.value name="system.counts.obuff.value"
-                                placeholder="0"}}
-                        </div>
-                    </div>
-                    <div class="counter flexrow ">
-                        <h4>{{ localize "SHAPER.DBuff" }}</h4>
-                        <div class="counter-value">
-                            {{numberInput system.counts.dbuff.value name="system.counts.dbuff.value"
-                                placeholder="0"}}
-                        </div>
-                    </div>
-                    <div class="counter flexrow ">
-                        <h4>{{ localize "SHAPER.Vitality" }}</h4>
-                        <div class="counter-value">
-                            {{numberInput system.counts.vitality.value name="system.counts.vitality.value"
-                                placeholder="0"}}
-                        </div>
-                    </div>
-                    <div class="counter flexrow ">
-                        <h4>{{ localize "SHAPER.Capacity" }}</h4>
-                        <div class="counter-value">
-                            {{numberInput system.counts.capacity.value name="system.counts.capacity.value"
-                                placeholder="0"}}
-                        </div>
-                    </div>
-                    <div class="counter flexrow ">
-                        <h4>{{ localize "SHAPER.Position" }}</h4>
-                        <div class="counter-value">
-                            {{numberInput system.counts.position.value name="system.counts.position.value"
-                                placeholder="0"}}
-                        </div>
-                    </div>
+                {{/each}}
                 </div>
                 {{!-- Traits --}}
                 {{> "shaper.actor-traits"}}

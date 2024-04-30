@@ -94,30 +94,35 @@
           "physO": {
             "value": 0,
             "bonus": 0,
+            "display": 0,
             "scale0": "str",
             "scale1": "fin" 
           },
           "menO": {
             "value": 0,
             "bonus": 0,
+            "display": 0,
             "scale0": "mnd",
             "scale1": "sol"
           },
           "physD": {
             "value": 10,
             "bonus": 0,
+            "display": 0,
             "scale0": "tgh",
             "scale1": "fin"
           },
           "menD": {
             "value": 10,
             "bonus": 0,
+            "display": 0,
             "scale0": "hrt",
             "scale1": "sol"
           },
           "endurance": {
             "value": 0,
             "bonus": 0,
+            "display": 0,
             "scale0": "tgh",
             "scale1": "hrt"
           }

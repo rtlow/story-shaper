@@ -256,8 +256,6 @@ export default class ActorShaper extends Actor {
     init.total = init.mod + init.value + globalCheckBonus;
   }
 
-  // TODO: Re-implement temp-hp
-
   /**
    * Prepare the max hp for an actor.
    * @protected
@@ -324,13 +322,16 @@ export default class ActorShaper extends Actor {
         case "physO":
         case "menO":
           st.value = scale0.value + scale1.value + st.bonus;
+          st.display = st.value;
           break;
         case "physD":
         case "menD":
-          st.value = scale0.value + scale1.value + st.bonus + 10;
+          st.value = scale0.value + scale1.value + st.bonus;
+          st.display = st.value + 10;
           break;
         case "endurance":
           st.value = scale0.value + scale1.value + st.bonus + ( this.system.details?.tier ?? 0 );
+          st.display = st.value;
           break;
       }
     }

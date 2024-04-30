@@ -454,6 +454,16 @@ SHAPER.languages = {
 };
 preLocalize("languages", { sort: true });
 
+/**
+ * Resistance or Weakness Roll Modes.
+ * @enum {string}
+ */
+SHAPER.resistanceModes = {
+  resistant: "SHAPER.ResResistant",
+  normal: "SHAPER.ResNormal",
+  weak: "SHAPER.ResWeak"
+};
+preLocalize("resistanceModes", { sort: false });
 
 /**
  * Special character flags.

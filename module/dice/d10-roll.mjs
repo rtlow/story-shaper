@@ -41,6 +41,16 @@ export default class D10Roll extends Roll {
     DISADVANTAGE: -1
   }
 
+  /**
+   * Resistance mode of a Shaper d10 roll
+   * @type {string}
+   */
+    static RES_MODE = {
+      NORMAL: "normal",
+      RESISTANT: "resistant",
+      WEAK: "weak"
+    }
+
   /* -------------------------------------------- */
 
   /**
@@ -79,6 +89,24 @@ export default class D10Roll extends Roll {
     return this.options.advantageMode === D10Roll.ADV_MODE.DISADVANTAGE;
   }
 
+    /**
+   * A convenience reference for whether this D10Roll has advantage
+   * @type {boolean}
+   */
+    get hasResistance() {
+      return this.options.resistanceMode === D10Roll.RES_MODE.RESISTANT;
+    }
+  
+    /* -------------------------------------------- */
+  
+    /**
+     * A convenience reference for whether this D10Roll has disadvantage
+     * @type {boolean}
+     */
+    get hasWeakness() {
+      return this.options.resistanceMode === D10Roll.RES_MODE.WEAK;
+    }
+
   /* -------------------------------------------- */
 
   /**
@@ -116,16 +144,26 @@ export default class D10Roll extends Roll {
 
     const d10 = this.terms[0];
     d10.modifiers = [];
-    
-    d10.number = 2;
 
-    let b = 11 - Math.abs(parseInt(this.options?.boonbane));
+    d10.number = 2;
+    let bi = parseInt(this.options?.boonbane);
+    bi = bi ? bi : 0;
+    let b = 11 - Math.abs( bi );
     let bane = b.toString();
 
     let baneBoundary = 5;
 
     // Clamp bane values that are too low
     if ( b < baneBoundary ) bane = baneBoundary.toString();
+    
+    // Handle Weakness or Resistance
+    if ( this.hasWeakness ) {
+      d10.number = 3;
+      d10.modifiers.push("kh2");
+    }
+    if ( this.hasResistance ) {
+      d10.number = 1;
+    }
 
     // Handle Boon or Bane
     if ( this.hasAdvantage ) {
@@ -143,6 +181,7 @@ export default class D10Roll extends Roll {
 
     // Re-compile the underlying formula
     this._formula = this.constructor.getFormula(this.terms);
+
 
     // Mark configuration as complete
     this.options.configured = true;
@@ -187,13 +226,15 @@ export default class D10Roll extends Roll {
    *                                          dialog was closed
    */
   async configureDialog({title, defaultRollMode, defaultAction=D10Roll.ADV_MODE.NORMAL, chooseModifier=false,
-    defaultAbility0, defaultAbility1, boonbane, template}={}, options={}) {
+    defaultAbility0, defaultAbility1, boonbane, defautlResistanceMode=D10Roll.RES_MODE.NORMAL, template}={}, options={}) {
 
     // Render the Dialog inner HTML
     const content = await renderTemplate(template ?? this.constructor.EVALUATION_TEMPLATE, {
       formula: `${this.formula} + @bonus`,
       defaultRollMode,
       rollModes: CONFIG.Dice.rollModes,
+      defautlResistanceMode,
+      resistanceModes: CONFIG.SHAPER.resistanceModes,
       chooseModifier,
       defaultAbility0,
       defaultAbility1,
@@ -271,6 +312,8 @@ export default class D10Roll extends Roll {
 
     // Apply advantage or disadvantage
     this.options.advantageMode = advantageMode;
+    // Apply the resistance mode
+    this.options.resistanceMode = form.resistanceMode.value;
     this.options.rollMode = form.rollMode.value;
     this.options.boonbane = form.boonbane.value;
     this.configureModifiers();

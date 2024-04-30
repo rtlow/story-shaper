@@ -48,8 +48,6 @@ export default class DamageRoll extends Roll {
     return this.options.critical;
   }
 
-  // TODO: Add Resistance and Vulnerability Roll Modes
-
   /* -------------------------------------------- */
   /*  Damage Roll Methods                         */
   /* -------------------------------------------- */

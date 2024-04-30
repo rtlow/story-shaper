@@ -4,6 +4,7 @@ import ItemShaper from "../../documents/item.mjs";
 import ActorAbilityConfig from "./ability-config.mjs";
 import ActorMovementConfig from "./movement-config.mjs";
 import ActorScalingConfig from "./scaling-config.mjs";
+import ActorInitScalingConfig from "./init-scaling-config.mjs";
 import ActorSkillConfig from "./skill-config.mjs";
 import ActorTypeConfig from "./type-config.mjs";
 
@@ -407,6 +408,9 @@ export default class ActorSheetShaper extends ActorSheet {
       case "scaling":
         const stat = event.currentTarget.closest("[data-stat]").dataset.stat;
         app = new ActorScalingConfig(this.actor, null, stat);
+        break;
+      case "init-scaling":
+        app = new ActorInitScalingConfig(this.actor, null);
         break;
       case "type":
         app = new ActorTypeConfig(this.actor);

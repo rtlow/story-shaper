@@ -111,14 +111,14 @@ preLocalize("stats", { key: "label" });
  * @enum {string}
  */
  SHAPER.counts = {
-  injury: "SHAPER.Injury",
-  obuff: "SHAPER.OBuff",
-  dbuff: "SHAPER.DBuff",
-  vitality: "SHAPER.Vitality",
-  capacity: "SHAPER.Capacity",
-  position: "SHAPER.Position"
+  injury: { label: "SHAPER.Injury" },
+  obuff: { label: "SHAPER.OBuff" },
+  dbuff: { label: "SHAPER.DBuff" },
+  vitality: { label: "SHAPER.Vitality" },
+  capacity: { label: "SHAPER.Capacity" },
+  position: { label: "SHAPER.Position" }
 };
-preLocalize("counts");
+preLocalize("counts", { key: "label" });
 
 /* -------------------------------------------- */
 
@@ -454,6 +454,16 @@ SHAPER.languages = {
 };
 preLocalize("languages", { sort: true });
 
+/**
+ * Resistance or Weakness Roll Modes.
+ * @enum {string}
+ */
+SHAPER.resistanceModes = {
+  resistant: "SHAPER.ResResistant",
+  normal: "SHAPER.ResNormal",
+  weak: "SHAPER.ResWeak"
+};
+preLocalize("resistanceModes", { sort: false });
 
 /**
  * Special character flags.

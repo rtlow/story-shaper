@@ -170,10 +170,10 @@
 
 "SHAPER.Boon": "Boon",
 "SHAPER.Bane": "Bane",
-
-"SHAPER.RollVulnerableResistant": "Vulnerable or Resistant?",
-"SHAPER.Vulnerable": "Vulnerable",
-"SHAPER.Resistant": "Resistant",
+"SHAPER.ResNormal": "Normal",
+"SHAPER.ResWeak": "Weak",
+"SHAPER.ResResistant": "Resistant",
+"SHAPER.ResistanceMode": "Vulnerable or Resistant?",
 
 "SHAPER.DistSq": "Squares",
 

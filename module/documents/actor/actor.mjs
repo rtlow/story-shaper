@@ -237,7 +237,7 @@ export default class ActorShaper extends Actor {
 
 
   /* -------------------------------------------- */
-
+  // TODO: figure out how to move the button
   /**
    * Prepare the initiative data for an actor.
    * Mutates the value of the `system.attributes.init` object.
@@ -247,17 +247,14 @@ export default class ActorShaper extends Actor {
    */
   _prepareInitiative(bonusData, globalCheckBonus) {
     const init = this.system.attributes.init ??= {};
-    const { initiativeAlert, jackOfAllTrades, remarkableAthlete } = this.flags.shaper ?? {};
+    const scale0 = init?.scale0 ?? this.system.abilities.fin;
+    const scale1 = init?.scale1 ?? this.system.abilities.sol;
 
     // Compute initiative modifier
-    init.mod = (this.system.abilities.fin?.mod ?? 0) + (this.system.abilities.sol?.mod ?? 0);
-
+    init.mod = (this.system.abilities[scale0]?.mod ?? 0) + (this.system.abilities[scale1]?.mod ?? 0);
     init.value = init.value ?? 0;
-    init.bonus = init.value + (initiativeAlert ? 5 : 0);
-    init.total = init.mod + init.bonus + globalCheckBonus;
+    init.total = init.mod + init.value + globalCheckBonus;
   }
-
-  // TODO: Re-implement temp-hp
 
   /**
    * Prepare the max hp for an actor.
@@ -325,13 +322,16 @@ export default class ActorShaper extends Actor {
         case "physO":
         case "menO":
           st.value = scale0.value + scale1.value + st.bonus;
+          st.display = st.value;
           break;
         case "physD":
         case "menD":
-          st.value = scale0.value + scale1.value + st.bonus + 10;
+          st.value = scale0.value + scale1.value + st.bonus;
+          st.display = st.value + 10;
           break;
         case "endurance":
           st.value = scale0.value + scale1.value + st.bonus + ( this.system.details?.tier ?? 0 );
+          st.display = st.value;
           break;
       }
     }

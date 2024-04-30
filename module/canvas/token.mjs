@@ -21,9 +21,11 @@ export default class TokenShaper extends Token {
   _drawHPBar(number, bar, data) {
 
     // Extract health data
-    let {value, max} = this.document.actor.system.attributes.hp;
+    let {value, max, temp} = this.document.actor.system.attributes.hp;
+    temp = Number(temp || 0);
 
     // Allocate percentages of the total
+    const tempPct = Math.clamped(temp, 0, max) / max;
     const valuePct = Math.clamped(value, 0, max) / max;
     const colorPct = Math.clamped(value, 0, max) / max;
 
@@ -46,7 +48,11 @@ export default class TokenShaper extends Token {
 
     // Health bar
     bar.beginFill(hpColor, 1.0).lineStyle(bs, blk, 1.0).drawRoundedRect(0, 0, valuePct*w, h, 2);
-
+    
+    // Temporary hit points
+    if ( temp > 0 ) {
+      bar.beginFill(c.temp, 1.0).lineStyle(0).drawRoundedRect(bs1, bs1, (tempPct*w)-(2*bs1), h-(2*bs1), 1);
+    }
 
     // Set position
     let posY = (number === 0) ? (this.h - h) : 0;

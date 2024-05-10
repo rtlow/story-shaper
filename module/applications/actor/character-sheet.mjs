@@ -132,7 +132,7 @@ export default class ActorSheetShaperCharacter extends ActorSheetShaper {
     const button = event.currentTarget;
     switch ( button.dataset.action ) {
       case "rollInitiative":
-        return this.actor.rollInitiative({createCombatants: true});
+        return this.actor.rollInitiativeDialog({event});
     }
   }
 }

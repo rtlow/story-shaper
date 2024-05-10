@@ -598,8 +598,6 @@ export default class ActorShaper extends Actor {
     parts.push("@mod");
     data.mod = abl?.mod ?? 0;
 
-
-
     // Add ability-specific check bonus
     if ( abl?.bonuses?.check ) {
       const checkBonusKey = `${abilityId}CheckBonus`;
@@ -725,6 +723,119 @@ export default class ActorShaper extends Actor {
     if ( roll ) Hooks.callAll("shaper.rollAbilityTest", this, roll, statID);
 
     return roll;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Get an un-evaluated D10Roll instance used to roll initiative for this Actor.
+   * @param {object} [options]                        Options which modify the roll
+   * @param {D10Roll.ADV_MODE} [options.advantageMode]    A specific advantage mode to apply
+   * @param {string} [options.flavor]                     Special flavor text to apply
+   * @returns {D10Roll}                               The constructed but unevaluated D20Roll
+   */
+  getInitiativeRoll(options={}) {
+
+    // Use a temporarily cached initiative roll
+    if ( this._cachedInitiativeRoll ) return this._cachedInitiativeRoll.clone();
+
+    // Obtain required data
+    const init = this.system.attributes?.init;
+    
+    // TODO modify this
+    const data = this.getRollData();
+    const flags = this.flags.shaper || {};
+    if ( flags.initiativeAdv ) options.advantageMode ??= shaper.dice.D10Roll.ADV_MODE.ADVANTAGE;
+
+    // Standard initiative formula
+    const parts = ["2d10"];
+
+    // Special initiative bonuses
+    if ( init ) {
+      parts.push(init.mod);
+      if ( init.bonus ) {
+        parts.push("@bonus");
+        data.bonus = Roll.replaceFormulaData(init.bonus, data);
+      }
+    }
+
+    // Global check bonus
+    if ( "bonuses" in this.system ) {
+      const globalCheckBonus = this.system.bonuses.abilities?.check;
+      if ( globalCheckBonus ) {
+        parts.push("@globalBonus");
+        data.globalBonus = Roll.replaceFormulaData(globalCheckBonus, data);
+      }
+    }
+
+    options = foundry.utils.mergeObject({
+      flavor: options.flavor ?? game.i18n.localize("SHAPER.Initiative"),
+      critical: null,
+      fumble: null
+    }, options);
+
+    // Create the d10 roll
+    const formula = parts.join(" + ");
+    return new CONFIG.Dice.D10Roll(formula, data, options);
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Roll initiative for this Actor with a dialog that provides an opportunity to elect advantage or other bonuses.
+   * @param {object} [rollOptions]      Options forwarded to the Actor#getInitiativeRoll method
+   * @returns {Promise<void>}           A promise which resolves once initiative has been rolled for the Actor
+   */
+  async rollInitiativeDialog(rollOptions={}) {
+    // Create and configure the Initiative roll
+    const roll = this.getInitiativeRoll(rollOptions);
+    const choice = await roll.configureDialog({
+      defaultRollMode: game.settings.get("core", "rollMode"),
+      title: `${game.i18n.localize("SHAPER.InitiativeRoll")}: ${this.name}`,
+      chooseModifier: false,
+      defaultAction: rollOptions.advantageMode ?? shaper.dice.D10Roll.ADV_MODE.NORMAL
+    });
+    if ( choice === null ) return; // Closed dialog
+
+    // Temporarily cache the configured roll and use it to roll initiative for the Actor
+    this._cachedInitiativeRoll = roll;
+    await this.rollInitiative({createCombatants: true});
+  }
+
+  /* -------------------------------------------- */
+  /** @inheritdoc */
+  async rollInitiative(options={}, rollOptions={}) {
+    this._cachedInitiativeRoll ??= this.getInitiativeRoll(rollOptions);
+
+    /**
+     * A hook event that fires before initiative is rolled for an Actor.
+     * @function shaper.preRollInitiative
+     * @memberof hookEvents
+     * @param {ActorShaper} actor  The Actor that is rolling initiative.
+     * @param {D10Roll} roll   The initiative roll.
+     */
+    if ( Hooks.call("shaper.preRollInitiative", this, this._cachedInitiativeRoll) === false ) {
+      delete this._cachedInitiativeRoll;
+      return null;
+    }
+
+    const combat = await super.rollInitiative(options);
+    const combatants = this.isToken ? this.getActiveTokens(false, true).reduce((arr, t) => {
+      const combatant = game.combat.getCombatantByToken(t.id);
+      if ( combatant ) arr.push(combatant);
+      return arr;
+    }, []) : [game.combat.getCombatantByActor(this.id)];
+
+    /**
+     * A hook event that fires after an Actor has rolled for initiative.
+     * @function shaper.rollInitiative
+     * @memberof hookEvents
+     * @param {ActorShaper} actor           The Actor that rolled initiative.
+     * @param {Combatant[]} combatants  The associated Combatants in the Combat.
+     */
+    Hooks.callAll("shaper.rollInitiative", this, combatants);
+    delete this._cachedInitiativeRoll;
+    return combat;
   }
 
   /* -------------------------------------------- */

@@ -6,22 +6,7 @@
  * @returns {string}  Final initiative formula for the actor.
  * 
  */
-export function _getInitiativeFormula() {
-  const actor = this.actor;
-  if ( !actor ) return "2d10";
-  const init = actor.system.attributes.init;
-
-  // Construct initiative formula parts
-  let nd = 2;
-  let mods = "";
-  const parts = [
-    `${nd}d10${mods}`,
-    init.mod,
-    (init.bonus !== 0) ? init.bonus : null
-  ];
-
-  // Apply tiebreaker
-  parts.push((init.mod ?? 0) / 100);
-
-  return parts.filter(p => p !== null).join(" + ");
+export function getInitiativeRoll(formula="2d10") {
+  if ( !this.actor ) return new CONFIG.Dice.D10Roll(formula ?? "2d10", {});
+  return this.actor.getInitiativeRoll();
 }

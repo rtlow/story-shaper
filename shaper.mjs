@@ -57,7 +57,7 @@ Hooks.once("init", function() {
 
   // Patch Core Functions
   CONFIG.Combat.initiative.formula = "2d10 + @attributes.fin.mod + @attributes.sol.mod";
-  Combatant.prototype._getInitiativeFormula = documents.combat._getInitiativeFormula;
+  Combatant.prototype.getInitiativeRoll = documents.combat.getInitiativeRoll
 
   // Register Roll Extensions
   CONFIG.Dice.rolls.push(dice.D10Roll);

@@ -742,10 +742,7 @@ export default class ActorShaper extends Actor {
     // Obtain required data
     const init = this.system.attributes?.init;
     
-    // TODO modify this
     const data = this.getRollData();
-    const flags = this.flags.shaper || {};
-    if ( flags.initiativeAdv ) options.advantageMode ??= shaper.dice.D10Roll.ADV_MODE.ADVANTAGE;
 
     // Standard initiative formula
     const parts = ["2d10"];
@@ -756,6 +753,9 @@ export default class ActorShaper extends Actor {
       if ( init.bonus ) {
         parts.push("@bonus");
         data.bonus = Roll.replaceFormulaData(init.bonus, data);
+        // TODO: find out how to apply tiebreaker
+        // Apply tiebreaker
+        parts.push((init.mod ?? 0) / 100);
       }
     }
 
@@ -776,6 +776,8 @@ export default class ActorShaper extends Actor {
 
     // Create the d10 roll
     const formula = parts.join(" + ");
+    
+    
     return new CONFIG.Dice.D10Roll(formula, data, options);
   }
 
@@ -796,7 +798,7 @@ export default class ActorShaper extends Actor {
       defaultAction: rollOptions.advantageMode ?? shaper.dice.D10Roll.ADV_MODE.NORMAL
     });
     if ( choice === null ) return; // Closed dialog
-
+    console.log(roll)
     // Temporarily cache the configured roll and use it to roll initiative for the Actor
     this._cachedInitiativeRoll = roll;
     await this.rollInitiative({createCombatants: true});

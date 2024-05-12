@@ -750,12 +750,10 @@ export default class ActorShaper extends Actor {
     // Special initiative bonuses
     if ( init ) {
       parts.push(init.mod);
+      parts.push((init.mod ?? 0) / 100);
       if ( init.bonus ) {
         parts.push("@bonus");
         data.bonus = Roll.replaceFormulaData(init.bonus, data);
-        // TODO: find out how to apply tiebreaker
-        // Apply tiebreaker
-        parts.push((init.mod ?? 0) / 100);
       }
     }
 
@@ -776,8 +774,6 @@ export default class ActorShaper extends Actor {
 
     // Create the d10 roll
     const formula = parts.join(" + ");
-    
-    
     return new CONFIG.Dice.D10Roll(formula, data, options);
   }
 

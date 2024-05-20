@@ -10,7 +10,7 @@
 
 "SHAPER.AbbreviationKgs": "kgs",
 
-"SHAPER.AbbreviationLevel": "Lvl.",
+"SHAPER.AbbreviationLevel": "Pot.",
 "SHAPER.AbbreviationLbs": "lbs.",
 
 "SHAPER.Ability": "Ability",
@@ -326,14 +326,14 @@
 "SHAPER.LanguagesGerman": "German",
 "SHAPER.LanguagesHindi": "Hindi",
 
-"SHAPER.Level": "Level",
-"SHAPER.LevelPl": "Levels",
+"SHAPER.Level": "Max Potential",
+"SHAPER.LevelPl": "Max Potential",
 "SHAPER.HeroTier": "Hero Tier",
-"SHAPER.LevelActionDecrease": "Level Down",
-"SHAPER.LevelActionIncrease": "Level Up",
-"SHAPER.LevelCount": "{ordinal} Level",
-"SHAPER.LevelNumber": "Level {level}",
-"SHAPER.LevelScaling": "Level Scaling",
+"SHAPER.LevelActionDecrease": "Potential Down",
+"SHAPER.LevelActionIncrease": "Potential Up",
+"SHAPER.LevelCount": "{ordinal} Potential",
+"SHAPER.LevelNumber": "Potential {level}",
+"SHAPER.LevelScaling": "Potential Scaling",
 "SHAPER.LimitedUses": "Limited Uses",
 
 "SHAPER.Max": "Max",

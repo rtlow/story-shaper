@@ -103,5 +103,5 @@ jobs:
       uses: cs96and/FoundryVTT-release-package@v1
       with:
         package-token: ${{ secrets.FOUNDRY_PACKAGE_TOKEN }}
-        manifest-url: https://github.com/${{ github.repository }}/releases/download/${{ env.TAG_NAME }}/module.json
+        manifest-url: https://github.com/${{ github.repository }}/releases/download/${{ env.TAG_NAME }}/system.json
         dry-run: true

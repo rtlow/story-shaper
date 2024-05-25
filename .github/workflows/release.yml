@@ -58,7 +58,7 @@ jobs:
     # Run our `build` script
     - name: Build All
       run: |
-        npm run build:code --if-present
+        npm run build --if-present
         mv --force shaper-compiled.mjs shaper.mjs
 
 

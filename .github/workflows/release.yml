@@ -11,26 +11,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
 
     # Set up our some variables for future use
     # Adapted from https://github.community/t/how-to-get-just-the-tag-name/16241/7
-    # Tag name: ${{ steps.get_vars.outputs.TAG_NAME }}
-    # Zip name: ${{ steps.get_vars.outputs.ZIP_NAME }}
-    # Expected Release Download URL: ${{ steps.get_vars.outputs.RELEASE_DOWNLOAD_URL }}
-    # Expected Release system.json URL: ${{ steps.get_vars.outputs.RELEASE_INSTALL_URL }}
-    # Stringified system.json contents: ${{ steps.get_vars.outputs.SYSTEM_JSON }}
+    # Tag name: ${{ env.TAG_NAME }}
+    # Zip name: ${{ env.ZIP_NAME }}
+    # Expected Release Download URL: ${{ env.RELEASE_DOWNLOAD_URL }}
+    # Expected Release system.json URL: ${{ env.RELEASE_INSTALL_URL }}
     - name: Set up variables
       id: get_vars
       run: |
         TAG=${GITHUB_REF/refs\/tags\//}
-        echo ::set-output name=TAG_NAME::$TAG
-        echo ::set-output name=ZIP_NAME::shaper-$TAG.zip
-        echo ::set-output name=RELEASE_DOWNLOAD_URL::https://github.com/${{github.repository}}/releases/download/$TAG/shaper-$TAG.zip
-        echo ::set-output name=RELEASE_INSTALL_URL::https://github.com/${{github.repository}}/releases/latest/download/system.json
-        JSON=$(cat ./system.json)
-        echo ::set-output name=SYSTEM_JSON::${JSON//'%'/'%25'}
+        echo "TAG_NAME=$TAG" >> $GITHUB_ENV
+        echo "ZIP_NAME=shaper-$TAG.zip" >> $GITHUB_ENV
+        echo "RELEASE_DOWNLOAD_URL=https://github.com/${{github.repository}}/releases/download/$TAG/shaper-$TAG.zip" >> $GITHUB_ENV
+        echo "RELEASE_INSTALL_URL=https://github.com/${{github.repository}}/releases/download/$TAG/system.json" >> $GITHUB_ENV
     
     # Substitute the Manifest and Download URLs in the system.json
     - name: Substitute Manifest and Download Links For Versioned Ones
@@ -39,16 +36,16 @@ jobs:
       with:
         files: 'system.json'
       env:
-        VERSION: ${{ steps.get_vars.outputs.TAG_NAME }}
+        VERSION: ${{ env.TAG_NAME }}
         URL: https://github.com/${{ github.repository }}
-        MANIFEST: ${{ steps.get_vars.outputs.RELEASE_INSTALL_URL }}
-        DOWNLOAD: ${{ steps.get_vars.outputs.RELEASE_DOWNLOAD_URL }}
+        MANIFEST: ${{ env.RELEASE_INSTALL_URL }}
+        DOWNLOAD: ${{ env.RELEASE_DOWNLOAD_URL }}
     
     # Set up Node
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
-        node-version: '16.x'
+        node-version: '18.x'
         cache: 'npm'
 
 
@@ -61,11 +58,23 @@ jobs:
     # Run our `build` script
     - name: Build All
       run: |
-        npm run build --if-present
+        npm run build:code --if-present
         mv --force shaper-compiled.mjs shaper.mjs
 
+
     # Create a zip file with all files required by the module to add to the release
-    - run: zip ${{steps.get_vars.outputs.ZIP_NAME}} -r icons lang json packs/*.db templates tokens ui shaper.css shaper.mjs shaper-compiled.mjs.map LICENSE.txt OGL.txt README.md system.json template.json
+    - run: zip ${{ env.ZIP_NAME }} -r fonts icons lang json packs/*.db templates tokens ui shaper.css shaper.mjs shaper-compiled.mjs.map LICENSE.txt README.md system.json template.json --exclude "packs/_source/*"
+
+
+    # Fetch the body from the release
+    - name: Fetch Release Body
+      id: release
+      uses: cardinalby/git-get-release-action@v1
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      with:
+        tag: ${{ env.TAG_NAME }}
+        doNotFailIfNotFound: true
 
 
     # Create a release for this specific version
@@ -74,10 +83,25 @@ jobs:
       uses: ncipollo/release-action@v1
       with:
         allowUpdates: true # Set this to false if you want to prevent updating existing releases
-        name: ${{steps.get_vars.outputs.TAG_NAME}}
+        name: ${{ env.TAG_NAME }}
         draft: false
-        prerelease: false
+        prerelease: true
+        omitDraftDuringUpdate: true
+        omitPrereleaseDuringUpdate: true
         token: ${{ secrets.GITHUB_TOKEN }}
-        artifacts: './system.json, ./${{steps.get_vars.outputs.ZIP_NAME}}'
-        tag: ${{steps.get_vars.outputs.TAG_NAME}}
-        body: '**Installation:** To manually install this release, please use the following manifest URL: ${{steps.get_vars.outputs.RELEASE_INSTALL_URL}}'
+        artifacts: './system.json, ./${{ env.ZIP_NAME }}'
+        tag: ${{ env.TAG_NAME }}
+        body: |
+          ${{ steps.release.outputs.body }}
+          
+          **Installation:** To manually install this release, please use the following manifest URL: ${{ env.RELEASE_INSTALL_URL }}
+
+    # Publish the release to FoundryVTT's package repository.
+    - name: Publish Module to FoundryVTT Website
+      id: publish_to_foundry_website
+      if: ${{ !github.event.release.unpublished && !github.event.release.prerelease }}
+      uses: cs96and/FoundryVTT-release-package@v1
+      with:
+        package-token: ${{ secrets.FOUNDRY_PACKAGE_TOKEN }}
+        manifest-url: https://github.com/${{ github.repository }}/releases/download/${{ env.TAG_NAME }}/module.json
+        dry-run: true

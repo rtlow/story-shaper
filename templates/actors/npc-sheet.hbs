@@ -155,7 +155,7 @@
                 {{#each system.stats as |stat id|}}
                     <li class="ability stats" data-stat="{{id}}">
                         <h4 class="stat-name box-title rollable">{{ stat.placeholder }}</h4>
-                        {{numberInput stat.display name=(concat "system.stats." id ".value")
+                        {{numberInput stat.value name=(concat "system.stats." id ".value")
                             class="ability-score" placeholder="0"}}
                     </li>
                 {{/each}}

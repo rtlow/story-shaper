@@ -261,50 +261,33 @@ export default class ActorShaper extends Actor {
    * @protected
    */
   _prepareHP() {
-    const hp = this.system.attributes.hp ?? {};
-    
+    const hp = this.system.attributes.hp ?? {};   
     hp.bonus = hp.bonus ?? 0;
-
     hp.bonusScale = hp.bonusScale ?? 0;
-
     const scale0 = this.system.abilities[hp.scale0];
-    const scale1 = this.system.abilities[hp.scale1];
-    
+    const scale1 = this.system.abilities[hp.scale1];   
     const vit = this.system.counts['vitality'];
-
     const base = 3 * ( scale0.value + scale1.value ) + 15;
-
     const vim = vit.value * ( 5 + scale0.value + scale1.value + hp.bonusScale );
-
     hp.max = base + vim + hp.bonus;
-
     hp.temp = hp.temp ?? 0;
-
   }
 
-    /**
+  /**
    * Prepare the max mp for an actor.
    * @protected
    */
-     _prepareMP() {
-      const mp = this.system.attributes.mp ?? {};
-
-      mp.bonus = mp.bonus ?? 0;
-
-      mp.bonusScale = mp.bonusScale ?? 0;
-  
-      const scale0 = this.system.abilities[mp.scale0];
-      const scale1 = this.system.abilities[mp.scale1];
-      
-      const cap = this.system.counts['capacity'];
-  
-      const base = 3 * ( scale0.value + scale1.value ) + 15;
-  
-      const vig = cap.value * ( 5 + scale0.value + scale1.value + mp.bonusScale );
-      
-      mp.max = base + vig + mp.bonus;
-  
-    }
+  _prepareMP() {
+    const mp = this.system.attributes.mp ?? {};
+    mp.bonus = mp.bonus ?? 0;
+    mp.bonusScale = mp.bonusScale ?? 0;
+    const scale0 = this.system.abilities[mp.scale0];
+    const scale1 = this.system.abilities[mp.scale1];
+    const cap = this.system.counts['capacity'];
+    const base = 3 * ( scale0.value + scale1.value ) + 15;
+    const vig = cap.value * ( 5 + scale0.value + scale1.value + mp.bonusScale );
+    mp.max = base + vig + mp.bonus;
+  }
 
 
   /**
@@ -313,8 +296,6 @@ export default class ActorShaper extends Actor {
    * @protected
    */
   _prepareStats() {
-
-
     for ( const [id, st] of Object.entries(this.system.stats) ) {
       const scale0 = this.system.abilities[st.scale0];
       const scale1 = this.system.abilities[st.scale1];
@@ -342,17 +323,12 @@ export default class ActorShaper extends Actor {
  * @protected
  */
   _prepareCounts() {
-
     const counts = this.system.counts ??={};
-
     for ( const key of Object.keys(counts) ) {
-
       counts[key].value = counts[key].value ?? 0;
-
       // If the value is higher than the max or less than the min, clamp it
       if ( counts[key].value > counts[key].max ) counts[key].value = counts[key].max;
       else if ( counts[key].value < counts[key].min ) counts[key].value = counts[key].min;
-
     }
   }
 

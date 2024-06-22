@@ -904,6 +904,7 @@ export default class ItemShaper extends Item {
       actor: this.actor,
       data: rollData,
       critical: this.getCriticalThreshold(),
+      haveResistance: true,
       title,
       flavor: title,
       dialogOptions: {

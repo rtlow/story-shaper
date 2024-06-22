@@ -21,18 +21,18 @@
         <label>{{ localize "SHAPER.RollSituationalBonus" }}</label>
         <input type="text" name="bonus" value="" placeholder="{{ localize 'SHAPER.RollExample' }}"/>
     </div>
-        <div class="form-group">
+    <div class="form-group">
         <label>{{ localize "SHAPER.RollBoonBane" }}</label>
         <input type="text" name="boonbane" value="" placeholder="{{ localize 'SHAPER.RollBoonBaneExample' }}"/>
-
     </div>
-        <div class="form-group">
+    {{#if haveResistance}}
+    <div class="form-group">
         <label>{{ localize "SHAPER.ResistanceMode" }}</label>
         <select name="resistanceMode">
             {{selectOptions resistanceModes selected=defautlResistanceMode localize=true}}
         </select>
     </div>
-
+    {{/if}}
     <div class="form-group">
         <label>{{ localize "SHAPER.RollMode" }}</label>
         <select name="rollMode">

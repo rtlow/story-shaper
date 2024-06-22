@@ -47,7 +47,7 @@
 export async function d10Roll({
   parts=[], data={}, event,
   advantage, disadvantage, boonbane=0, critical=20, fumble=1, targetValue,
-  fastForward=false, chooseModifier=false, template, title, dialogOptions,
+  fastForward=false, chooseModifier=false, haveResistance=false, template, title, dialogOptions,
   chatMessage=true, messageData={}, rollMode, flavor
 }={}) {
 
@@ -77,6 +77,7 @@ export async function d10Roll({
     const configured = await roll.configureDialog({
       title,
       chooseModifier,
+      haveResistance,
       defaultRollMode,
       defaultAction: advantageMode,
       defaultAbility0: data?.defaultAbility0,

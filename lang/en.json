@@ -280,7 +280,7 @@
 "SHAPER.Identifier": "Identifier",
 "SHAPER.IdentifierError": "Identifier can only contain letters (a-z), numbers (0-9), dashes (-), and underscores (_).",
 "SHAPER.Initiative": "Initiative",
-
+"SHAPER.InitiativeRoll": "Initiative Roll",
 "SHAPER.Inventory": "Inventory",
 "SHAPER.ItemActionType": "Action Type",
 "SHAPER.ItemActivationCondition": "Activation Condition",

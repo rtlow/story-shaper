@@ -228,7 +228,6 @@ export default class D10Roll extends Roll {
   async configureDialog({title, defaultRollMode, defaultAction=D10Roll.ADV_MODE.NORMAL, chooseModifier=false, haveResistance=false,
     defaultAbility0, defaultAbility1, boonbane, defautlResistanceMode=D10Roll.RES_MODE.NORMAL, template}={}, options={}) {
     
-    console.log(haveResistance)
     // Render the Dialog inner HTML
     const content = await renderTemplate(template ?? this.constructor.EVALUATION_TEMPLATE, {
       formula: `${this.formula} + @bonus`,

@@ -500,7 +500,7 @@ export default class ActorShaper extends Actor {
         "flags.shaper.roll": {type: "skill", skillId }
       }
     }, options);
-    console.log(rollData)
+
     /**
      * A hook event that fires before a skill check is rolled for an Actor.
      * @function shaper.preRollSkill
@@ -760,7 +760,6 @@ export default class ActorShaper extends Actor {
       defaultAction: rollOptions.advantageMode ?? shaper.dice.D10Roll.ADV_MODE.NORMAL
     });
     if ( choice === null ) return; // Closed dialog
-    console.log(roll)
     // Temporarily cache the configured roll and use it to roll initiative for the Actor
     this._cachedInitiativeRoll = roll;
     await this.rollInitiative({createCombatants: true});

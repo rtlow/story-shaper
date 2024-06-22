@@ -452,8 +452,6 @@ export default class ActorShaper extends Actor {
    */
   async rollSkill(skillId, options={}) {
     const skl = this.system.skills[skillId];
-    const abl0 = this.system.abilities[skl.ability0];
-    const abl1 = this.system.abilities[skl.ability1];
     const globalBonuses = this.system.bonuses?.abilities ?? {};
     const parts = ["@mod", "@abilityCheckBonus"];
     const data = this.getRollData();
@@ -464,21 +462,12 @@ export default class ActorShaper extends Actor {
     data.defaultAbility0 = skl.ability0;
     data.defaultAbility1 = skl.ability1;
 
-
     // Global ability check bonus
     if ( globalBonuses.check ) {
       parts.push("@checkBonus");
       data.checkBonus = Roll.replaceFormulaData(globalBonuses.check, data);
     }
 
-    /*
-    // Ability-specific check bonus
-    if ( abl0?.bonuses?.check || abl1?.bonuses?.check ) {
-      data.abilityCheckBonus = Roll.replaceFormulaData(abl0.bonuses.check, data);
-      data.abilityCheckBonus = Roll.replaceFormulaData(abl1.bonuses.check, data);
-    }
-    else data.abilityCheckBonus = 0;
-    */
    // Don't know what this does, so leave it alone
     data.abilityCheckBonus = 0
 
@@ -497,7 +486,6 @@ export default class ActorShaper extends Actor {
 
     // Add provided extra roll parts now because they will get clobbered by mergeObject below
     if ( options.parts?.length > 0 ) parts.push(...options.parts);
-
 
     // Roll and return
     const flavor = game.i18n.format("SHAPER.SkillPromptTitle", {skill: CONFIG.SHAPER.skills[skillId]?.label ?? ""});
@@ -668,6 +656,7 @@ export default class ActorShaper extends Actor {
       parts,
       data,
       title: `${flavor}: ${this.name}`,
+      haveResistance: true,
       flavor,
       messageData: {
         speaker: options.speaker || ChatMessage.getSpeaker({actor: this}),
@@ -711,6 +700,7 @@ export default class ActorShaper extends Actor {
    * @returns {D10Roll}                               The constructed but unevaluated D20Roll
    */
   getInitiativeRoll(options={}) {
+    // TODO: Make initiative configurable; change what attributes contribute to initiative 
 
     // Use a temporarily cached initiative roll
     if ( this._cachedInitiativeRoll ) return this._cachedInitiativeRoll.clone();
@@ -770,7 +760,6 @@ export default class ActorShaper extends Actor {
       defaultAction: rollOptions.advantageMode ?? shaper.dice.D10Roll.ADV_MODE.NORMAL
     });
     if ( choice === null ) return; // Closed dialog
-    console.log(roll)
     // Temporarily cache the configured roll and use it to roll initiative for the Actor
     this._cachedInitiativeRoll = roll;
     await this.rollInitiative({createCombatants: true});

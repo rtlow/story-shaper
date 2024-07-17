@@ -314,7 +314,9 @@ export default class D10Roll extends Roll {
     // Apply advantage or disadvantage
     this.options.advantageMode = advantageMode;
     // Apply the resistance mode
-    this.options.resistanceMode = form.resistanceMode.value;
+    if ( form.resistanceMode?.value ) {
+      this.options.resistanceMode = form.resistanceMode?.value;
+    }
     this.options.rollMode = form.rollMode.value;
     this.options.boonbane = form.boonbane.value;
     this.configureModifiers();

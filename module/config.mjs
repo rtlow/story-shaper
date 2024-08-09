@@ -285,7 +285,7 @@ preLocalize("movementTypes", { sort: true });
  * @enum {string}
  */
 SHAPER.movementUnits = {
-  sq: "SHAPER.DistSq"
+  zn: "SHAPER.DistSq"
 };
 preLocalize("movementUnits");
 

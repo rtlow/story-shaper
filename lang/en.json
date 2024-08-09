@@ -175,7 +175,7 @@
 "SHAPER.ResResistant": "Resistant",
 "SHAPER.ResistanceMode": "Vulnerable or Resistant?",
 
-"SHAPER.DistSq": "Squares",
+"SHAPER.DistSq": "Zones",
 
 "SHAPER.DistMelee": "Melee",
 "SHAPER.DistShort": "Short",
@@ -462,7 +462,7 @@
 "SHAPER.TargetObject": "Object",
 "SHAPER.TargetRadius": "Radius",
 "SHAPER.TargetSelf": "Self",
-"SHAPER.TargetSpace": "Space",
+"SHAPER.TargetSpace": "Zone",
 "SHAPER.TargetSphere": "Sphere",
 "SHAPER.TargetSquare": "Square",
 "SHAPER.TargetWall": "Wall",

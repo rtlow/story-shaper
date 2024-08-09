@@ -51,7 +51,7 @@
           },
           "movement": {
             "walk": 1,
-            "units": "sq",
+            "units": "zn",
             "hover": false
           }
         },
